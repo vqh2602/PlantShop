@@ -19,24 +19,50 @@ class UserController extends GetxController{
 
   Future<void> createUser(String email, String phone, String name, String address) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final user = <String, dynamic>{
-      "email": email,
-      "phone": phone,
-      "name": name,
-      "address": address,
-    };
+
+    final docRef =db.collection("users").doc("idLastUser");
+    await docRef.get().then(
+          (DocumentSnapshot doc) async {
+        final data = doc.data() as Map<String, dynamic>;
+        // ...
+
+        // cạp nhat ad
+        print('id: ${data["idLastUser"]}');
+        final user = <String, dynamic>{
+          "email": email,
+          "phone": phone,
+          "name": name,
+          "address": address,
+          "idUser": data["idLastUser"] +1,
+        };
+        await db
+            .collection("users")
+            .doc(email)
+            .set(user).whenComplete((){
+              // cập nhật lại lát id
+          final Ref = db.collection("users").doc("idLastUser");
+          Ref.update({"idLastUser":data["idLastUser"]+1,}).then(
+                  (value){
+              },
+              onError: (e){});
+        });
+
+
+
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+
     // Add a new document with a generated ID
     // db.collection("users").add(user).then((DocumentReference doc) =>
     //     print('DocumentSnapshot added with ID: ${doc.id}'));
-    await db
-        .collection("users")
-        .doc(email)
-        .set(user)
-        .onError((e, _) => print("Error writing document: $e"));
+
     Future.delayed(const Duration(seconds: 1), () {
       getUser(email);
       // Prints after 1 second.
     });
+
 
   }
   void getUser(String email){
@@ -50,7 +76,7 @@ class UserController extends GetxController{
               (DocumentSnapshot doc) async {
             final data = doc.data() as Map<String, dynamic>;
             // ...
-            UserCustom userCustom = UserCustom(email: data["email"], name: data["name"], phone: data["phone"], address: data["address"]);
+            UserCustom userCustom = UserCustom(id: data["idUser"],email: data["email"], name: data["name"], phone: data["phone"], address: data["address"]);
             print("in customusser: ${userCustom.name}");
             //await Future.delayed(const Duration(seconds: 1));
 
@@ -91,5 +117,24 @@ class UserController extends GetxController{
     );
 
   }
+
+  // Future<int?> getLastIDUser() async{
+  //   FirebaseFirestore db = FirebaseFirestore.instance;
+  //
+  //       final docRef =db.collection("users").doc("idLastUser");
+  //       await docRef.get().then(
+  //             (DocumentSnapshot doc) async {
+  //           final data = doc.data() as Map<String, dynamic>;
+  //           // ...
+  //
+  //           // cạp nhat ad
+  //           print('id: ${data["idLastUser"]}');
+  //           return data["idLastUser"];
+  //
+  //
+  //         },
+  //         onError: (e) => print("Error getting document: $e"),
+  //       );
+  // }
 
 }

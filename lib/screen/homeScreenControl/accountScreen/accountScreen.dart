@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:getx_firebase/main.dart';
+import 'package:getx_firebase/screen/oderScreen/oderScreen.dart';
 
 import '../../splashScreen/splashScreen.dart';
 import 'editAccInfomationScreen.dart';
@@ -204,7 +205,7 @@ class AccountScreen extends StatelessWidget{
                               children: [
                                 InkWell(
                                   onTap: (){
-
+                                    Get.to(OderScreen(title: "Processing",));
                                   },
                                   child: Column(
                                     children: const [
@@ -220,7 +221,7 @@ class AccountScreen extends StatelessWidget{
                                 ),
                                 InkWell(
                                   onTap: (){
-
+                                    Get.to(OderScreen(title: "Delivering",));
                                   },
                                   child: Column(
                                     children: const [
@@ -236,7 +237,7 @@ class AccountScreen extends StatelessWidget{
                                 ),
                                 InkWell(
                                   onTap: (){
-
+                                    Get.to(OderScreen(title: "Complate",));
                                   },
                                   child: Column(
                                     children: const [
@@ -252,7 +253,7 @@ class AccountScreen extends StatelessWidget{
                                 ),
                                 InkWell(
                                   onTap: (){
-
+                                    Get.to(OderScreen(title: "Canceled",));
                                   },
                                   child: Column(
                                     children: const [

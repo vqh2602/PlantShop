@@ -1,3 +1,8 @@
+import 'dart:collection';
+import 'dart:convert';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +11,9 @@ import 'package:getx_firebase/controllers/controllers/myCartController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:getx_firebase/models/sqlLiteMyCart/myCart.dart';
 import 'package:getx_firebase/screen/homeScreenControl/myCart/payment_processing.dart';
+
+import '../../../controllers/controllers/billController.dart';
+import '../../../models/bill.dart';
 
 Widget listItemInCart(MyCartController myCartController, BuildContext context){
   return Container(
@@ -126,7 +134,7 @@ Widget listItemInCart(MyCartController myCartController, BuildContext context){
   );
 }
 
-Widget buttonCheckOut(MyCartController myCartController, UserController userController){
+Widget buttonCheckOut(MyCartController myCartController, UserController userController, BillController billController){
   return Column(
     children: [
       Container(
@@ -210,7 +218,7 @@ Widget buttonCheckOut(MyCartController myCartController, UserController userCont
         child:  ElevatedButton(
             onPressed: (){
               Get.bottomSheet(
-               bottomSheetCheckOut(myCartController,userController),
+               bottomSheetCheckOut(myCartController,userController,billController),
                 backgroundColor: Colors.white,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
@@ -241,7 +249,7 @@ Widget buttonCheckOut(MyCartController myCartController, UserController userCont
   );
 }
 
-Widget bottomSheetCheckOut(MyCartController myCartController, UserController userController){
+Widget bottomSheetCheckOut(MyCartController myCartController, UserController userController, BillController billController){
   return  Container(
     margin: const EdgeInsets.only(left: 20,right: 20,top: 10),
     child: SingleChildScrollView(
@@ -447,15 +455,24 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
               // button
               Padding(padding: EdgeInsets.all(30),
                 child:  ElevatedButton(
-                    onPressed: (){
+                    onPressed: () async {
 
                       if(userController.user.value!.name == ''
                           || userController.user.value!.address == ''
-                          || userController.user.value!.phone == ''){
+                          || userController.user.value!.phone == ''
+                          || myCartController.lstMyCart.value!.isEmpty){
                         Get.snackbar('Fill in shipping information',
                             'Visit the account page to edit information',
                             snackPosition: SnackPosition.TOP,
                         colorText: Colors.white);
+                      }else {
+                        // tạo bill
+                        billController.createBill(myCartController, userController).whenComplete(()
+                        =>  Future.delayed(const Duration(seconds: 1), () {
+                          Get.snackbar('Complete purchase', 'Visit your account page to track your order',snackPosition: SnackPosition.TOP,
+                              colorText: Colors.black);// Prints after 1 second.
+                        })
+                        );
                       }
 
                     },

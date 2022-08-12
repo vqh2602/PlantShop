@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_firebase/controllers/controllers/billController.dart';
 import 'package:getx_firebase/controllers/controllers/myCartController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,7 @@ import 'myCart_widget.dart';
 class MyCartScreen extends StatelessWidget{
 
   MyCartController myCartController = Get.put(MyCartController());
+  BillController billController = Get.put(BillController());
   UserController userController = Get.find();
 
   MyCartScreen({Key? key}) : super(key: key);
@@ -55,7 +57,7 @@ class MyCartScreen extends StatelessWidget{
                           // button
                           Expanded(
                               flex: 3,
-                              child: buttonCheckOut(myCartController,userController))
+                              child: buttonCheckOut(myCartController,userController,billController))
                         ],
                       ),
                     ));

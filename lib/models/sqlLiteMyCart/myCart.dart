@@ -20,6 +20,12 @@ class MyCart{
     email = map["email"];
     idPlant = map["idPlant"];
     number = map["number"];
-
   }
+
+  Map<String, Object> toJson() => {
+    'plant':{
+      'plantID': idPlant,
+      'number': number,
+    }
+  };
 }
