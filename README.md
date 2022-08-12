@@ -1,16 +1,25 @@
-# getx_firebase
+# Plant Shop
+## _Ứng dụng bán cây cảnh (ui)_
 
-A new Flutter project.
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
-## Getting Started
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](#)
 
-This project is a starting point for a Flutter application.
+Ứng dụng sử dụng firebase, sqlLite, getx
 
-A few resources to get you started if this is your first Flutter project:
+- Firebase: lưu trữ dữ liệu đơn hàng, và người dùng, xác thực người dùng
+- sqllite: Lưu trữ quản lí giỏ hàng
+- getx: ✨Magic ✨
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Nổi Bật
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Đăng kí và đăng nhập thông qua email
+- quản lí thông tin người dùng
+- quản lí và cập nhật đơn hàng
+- quét mã qr để tìm sản phẩm
+- Sử dụng getx để quản lí state
+
+
+## Tech
+
+Một số hình ảnh chức năng:
