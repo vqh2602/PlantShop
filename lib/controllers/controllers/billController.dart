@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +31,12 @@ class BillController extends GetxController{
     DatabaseReference ref = database.ref('Bill');
 
     // chuyển dánh ách giỏ hàng thành chuỗi chuyên biệt
-    String lstPlant = '';
-    for(var lst in myCartController.lstMyCart.value!){
-    lstPlant+= '${lst!.idPlant}:${lst.number},';
-    }
+    // String lstPlant = '';
+    // for(var lst in myCartController.lstMyCart.value!){
+    // lstPlant+= '${lst!.idPlant}:${lst.number},';
+    // }
+
+    String listCartJson = jsonEncode(myCartController.lstMyCart.value);
     // Map<String, Object> map =  HashMap<>() as Map<String, Object>;
 
     //    await ref.set({
@@ -71,7 +75,7 @@ class BillController extends GetxController{
     "phone": userController.user.value!.phone,
     "address": userController.user.value!.address,
     },
-    "listPlant": lstPlant,
+    "listPlant": listCartJson,
     // "plant":9,
     // "number": 12
 
@@ -122,6 +126,7 @@ class BillController extends GetxController{
       // list.add(user);
     });
     lstBill.value = lstB;
+    print(lstB[0].listPlant![0]['plant']['number'].toString());
   }
 
   Future<void> updateBill(int userId, int billId ) async {

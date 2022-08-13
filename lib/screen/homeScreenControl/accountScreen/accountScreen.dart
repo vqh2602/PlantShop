@@ -5,16 +5,31 @@ import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:getx_firebase/main.dart';
+import 'package:getx_firebase/screen/infoPlantScreen/infoPlantScreen.dart';
 import 'package:getx_firebase/screen/oderScreen/oderScreen.dart';
 
+import '../../../controllers/controllers/billController.dart';
+import '../../../controllers/controllers/myCartController.dart';
+import '../../../data/plantData.dart';
+import '../../../models/bill.dart';
+import '../../../models/plant.dart';
+import '../../oderScreen/oderScreen_widget.dart';
 import '../../splashScreen/splashScreen.dart';
 import 'editAccInfomationScreen.dart';
 
 class AccountScreen extends StatelessWidget{
+ AccountScreen({Key? key}) : super(key: key);
+
+  AuthController authController = Get.put(AuthController());
+  UserController userController = Get.put(UserController());
+  BillController billController = Get.put(BillController());
+  MyCartController myCartController =  Get.put(MyCartController());
+
+
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
-    UserController userController = Get.put(UserController());
+
+    billController.getBill(myCartController, userController);
 
     // TODO: implement build
     //throw UnimplementedError();
@@ -60,8 +75,8 @@ class AccountScreen extends StatelessWidget{
                                    Row(
                                      children: [
                                        const CircleAvatar(
-                                         backgroundImage: AssetImage('assets/images/user.jpg'),
-                                         radius: 50,
+                                         backgroundImage: AssetImage('assets/images/user.png'),
+                                         radius: 60,
                                        ),
                                        Expanded(child: Container(
                                          margin: const EdgeInsets.only(left: 10),
@@ -176,20 +191,20 @@ class AccountScreen extends StatelessWidget{
             ),),
             Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 20,right: 20,top: 30),
-                      padding: const EdgeInsets.only(bottom: 20,top: 10),
-                      decoration: BoxDecoration(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 20,right: 20,top: 30),
+                        padding: const EdgeInsets.only(bottom: 20,top: 10),
+                        decoration: BoxDecoration(
                           color: const Color(0xFFf7f7f7),
-                        border: Border(
-                          bottom: BorderSide(
-                              color: Colors.grey.shade300,
-                              width: 1
-                          ),),
-                      ),
-                      child: Container(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Colors.grey.shade300,
+                                width: 1
+                            ),),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,16 +221,19 @@ class AccountScreen extends StatelessWidget{
                                 InkWell(
                                   onTap: (){
                                     Get.to(OderScreen(title: "Processing",));
+                                    // BillController billController = Get.put(BillController());
+                                    // MyCartController myCartController = Get.put(MyCartController());
+                                    // billController.getBill(myCartController, userController);
                                   },
                                   child: Column(
                                     children: const [
-                                    Icon(FontAwesomeIcons.receipt,size: 50, color: Color(0xFF498552)),
-                                    SizedBox(height: 5,),
-                                    Text('Processing',
-                                    style:TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      fontSize: 10
-                                    ),)
+                                      Icon(FontAwesomeIcons.receipt,size: 50, color: Color(0xFF498552)),
+                                      SizedBox(height: 5,),
+                                      Text('Processing',
+                                        style:TextStyle(
+                                            fontFamily: 'Comfortaa',
+                                            fontSize: 10
+                                        ),)
                                     ],
                                   ),
                                 ),
@@ -272,170 +290,99 @@ class AccountScreen extends StatelessWidget{
                           ],
                         ),
                       ),
-                    ),
 
-                    Container(
-                      margin: const EdgeInsets.only(left: 20,right: 20,top: 30),
-                      padding: EdgeInsets.only(bottom: 20,top: 10),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFf7f7f7),
-                        border: Border(
-                          bottom: BorderSide(
-                              color: Colors.grey.shade300,
-                              width: 1
-                          ),),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Purchase oder',
-                              style: TextStyle(
-                                  fontFamily: 'Comfortaa',
-                                  fontWeight: FontWeight.bold
-                              ),),
-                            const SizedBox(height: 20,),
-                            Container(
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/1a.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                              fontSize: 10,
-                                              color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/2a.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/3a.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/1.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/4.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                    Padding(padding: EdgeInsets.only(right: 20),
-                                      child: Column(
-                                        children: [
-                                          Image.asset('assets/images/2.png',width: 100,height: 100,),
-                                          SizedBox(height: 5,),
-                                          Text('50.56\$',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Color(0xFF498552)
-                                            ),),
-                                          Text('Cay van tue',overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 10,
-                                                color: Colors.grey
-                                            ),),
-
-                                        ],
-                                      ),),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
+                      Container(
+                        margin: const EdgeInsets.only(left: 20,right: 20,top: 30),
+                        padding: const EdgeInsets.only(bottom: 20,top: 10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFf7f7f7),
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Colors.grey.shade300,
+                                width: 1
+                            ),),
                         ),
-                      ),
-                    )
-                  ],
-                ),),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Purchase oder',
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    fontWeight: FontWeight.bold
+                                ),),
+                              const SizedBox(height: 20,),
+                              Container(
+                                height: 150,
+                                child:
+                                Obx(()=>
+                                    ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: getLstPlantBuy(lstBill('complate',billController,userController)).length>10?10:getLstPlantBuy(lstBill('complate',billController,userController)).length,
+                                        itemBuilder:(context,index){
+                                          return  SizedBox(
+                                            width: 100,
+                                            height: 100,
+                                            child: Padding(padding: EdgeInsets.only(right: 20),
+                                                child: InkWell(
+                                                  onTap: (){
+                                                    Get.to(InfoPlantScreen(plant: getLstPlantBuy(lstBill('complate',billController,userController))[index],));
+                                                  },
+                                                  child: Column(
+                                                    children: [
+                                                      Image.asset(getLstPlantBuy(lstBill('complate',billController,userController))[index].image,width: 100,height: 100,),
+                                                      const SizedBox(height: 5,),
+                                                      Text('${getLstPlantBuy(lstBill('complate',billController,userController))[index].price}\$',overflow: TextOverflow.ellipsis,
+                                                        style: const TextStyle(
+                                                            fontFamily: 'Comfortaa',
+                                                            fontSize: 10,
+                                                            color: Color(0xFF498552)
+                                                        ),),
+                                                      Text(getLstPlantBuy(lstBill('complate',billController,userController))[index].name,overflow: TextOverflow.ellipsis,
+                                                        style: const TextStyle(
+                                                            fontFamily: 'Comfortaa',
+                                                            fontSize: 10,
+                                                            color: Colors.grey
+                                                        ),),
+
+                                                    ],
+                                                  ),
+                                                )),
+
+                                          );
+                                        })
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )),
           ],
         ),
       ),
     );
   }
 
+  List<Plant> getLstPlantBuy(List<Bill> lstBill){
+    List<Plant> lst = [];
+    // print('so luong tach: ${listSanPham.length}');
+    // loại bỏ phẩn tử thừa , ở cuối cùng
+    for(var b in lstBill){
+      for (var lstbpl in b.listPlant!){
+        for(var x in lstPlant){
+          if(x.id == int.parse(lstbpl['plant']['plantID'].toString())){
+            lst.add(x);
+          }
+          // print('${lstSl[0]} so luong: ${lstSl[1]}');
+        }
+      }
+    }
+
+    return lst;
+  }
 }

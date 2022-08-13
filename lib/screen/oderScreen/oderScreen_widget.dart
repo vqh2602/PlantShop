@@ -11,13 +11,13 @@ import 'package:getx_firebase/controllers/controllers/userController.dart';
 
 import '../../data/plantData.dart';
 import '../../models/bill.dart';
-import '../../models/plant.dart';
+import '../../models/plant.dart' as pl;
 
 Widget oderList(String title, BillController billController, UserController userController, MyCartController myCartController){
   return Column(
     children: [
       Text('$title',
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
           color: Color(0xFF498552),
           fontWeight: FontWeight.bold,
@@ -25,15 +25,15 @@ Widget oderList(String title, BillController billController, UserController user
         ),),
       Expanded(child: Obx(()=>
           Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: ListView.builder(
                 itemCount: lstBill(title,billController,userController).length,
                 itemBuilder: (context,index){
                   return Container(
-                    margin: EdgeInsets.only(left: 20,right: 20,top: 3,bottom: 3),
+                    margin: const EdgeInsets.only(left: 20,right: 20,top: 3,bottom: 3),
                     child: Card(
                       child: Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Column(
                           children: [
                             Row(
@@ -77,7 +77,7 @@ Widget oderList(String title, BillController billController, UserController user
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('Order date',
+                                const Text('Order date',
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: Colors.black,
@@ -85,7 +85,7 @@ Widget oderList(String title, BillController billController, UserController user
                                     fontFamily: 'Comfortaa',
                                   ),),
                                 Text(formatDate(DateTime.parse(lstBill(title,billController,userController)[index].date!), [dd, '-', mm, '-', yyyy]).toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 13,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -96,9 +96,9 @@ Widget oderList(String title, BillController billController, UserController user
 
                             // thoong tin ng dung
                             Container(
-                              margin: EdgeInsets.only(top: 10),
+                              margin: const EdgeInsets.only(top: 10),
                               padding: EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 border: Border(
                                   top: BorderSide( //                    <--- top side
                                     color: Color(0xFF498552),
@@ -116,9 +116,9 @@ Widget oderList(String title, BillController billController, UserController user
                                                 children: [
                                                   Row(
                                                     children:[
-                                                      Icon(FontAwesomeIcons.user,size: 20,color: Color(0xFF498552),
+                                                      const Icon(FontAwesomeIcons.user,size: 20,color: Color(0xFF498552),
                                                       ),
-                                                      SizedBox(width: 5,),
+                                                      const SizedBox(width: 5,),
                                                       Text(lstBill(title,billController,userController)[index].address!.name!,
                                                         style: const TextStyle(
                                                           color: Colors.black,
@@ -129,10 +129,10 @@ Widget oderList(String title, BillController billController, UserController user
                                                   const SizedBox(height: 20,),
                                                   Row(
                                                     children:[
-                                                      Icon(Icons.local_phone_outlined,size: 20,color: Color(0xFF498552),),
-                                                      SizedBox(width: 5,),
+                                                      const Icon(Icons.local_phone_outlined,size: 20,color: Color(0xFF498552),),
+                                                      const SizedBox(width: 5,),
                                                       Text(lstBill(title,billController,userController)[index].address!.phone!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.black,
                                                           fontFamily: 'Comfortaa',
                                                         ),),
@@ -141,12 +141,12 @@ Widget oderList(String title, BillController billController, UserController user
                                                   const SizedBox(height: 20,),
                                                   Row(
                                                     children: [
-                                                      Icon(Icons.location_on_outlined,size: 20,color: Color(0xFF498552),),
-                                                      SizedBox(width: 5,),
+                                                      const Icon(Icons.location_on_outlined,size: 20,color: Color(0xFF498552),),
+                                                      const SizedBox(width: 5,),
                                                       Expanded(child:  Text(lstBill(title,billController,userController)[index].address!.address!
                                                         ,overflow: TextOverflow.ellipsis,
                                                         maxLines: 2,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.black,
                                                           fontFamily: 'Comfortaa',
                                                         ),),)
@@ -161,7 +161,7 @@ Widget oderList(String title, BillController billController, UserController user
                                           ]
                                       ),
                                       collapsed:ExpandableButton(  // <-- Expands when tapped on the cover photo
-                                        child: Text('Delivery information',
+                                        child: const Text('Delivery information',
                                           style: TextStyle(
                                             fontSize: 13,
                                             color: Colors.black,
@@ -173,6 +173,7 @@ Widget oderList(String title, BillController billController, UserController user
                                 ),),
                             ),
 
+                            // danh sach sp
                             Container(
                               margin: EdgeInsets.only(top: 10),
                               padding: EdgeInsets.only(top: 10),
@@ -192,7 +193,7 @@ Widget oderList(String title, BillController billController, UserController user
                                             SizedBox(
                                               height: 200,
                                               child: ListView.builder(
-                                                  itemCount: lstPlantBuy(getsp(lstBill(title,billController,userController)[index].listPlant!)).length,
+                                                  itemCount: lstBill(title,billController,userController)[index].listPlant!.length,
                                                   itemBuilder: (context,i){
                                                     return Container(
                                                       margin:const EdgeInsets.only(left: 20,right: 20),
@@ -209,7 +210,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                         children: [
                                                           Expanded(flex:4,child: Container(
                                                             padding: EdgeInsets.all(10),
-                                                            child: Image.asset('${lstPlantBuy(getsp(lstBill(title,billController,userController)[index].listPlant!))[i].image}',height: 50,),
+                                                            child: Image.asset(getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).image,height: 50,),
                                                           ),),
                                                           Expanded(
                                                               flex:7,
@@ -221,7 +222,7 @@ Widget oderList(String title, BillController billController, UserController user
 
                                                                     Align(
                                                                       alignment: Alignment.topLeft,
-                                                                      child: Text(lstPlantBuy(getsp(lstBill(title,billController,userController)[index].listPlant!))[i].name,
+                                                                      child: Text(getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).name,
                                                                         style: const TextStyle(
                                                                           fontSize: 13,
                                                                           color: Colors.black,
@@ -233,7 +234,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                                     Row(
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       children: [
-                                                                        Text('${lstPlantBuy(getsp(lstBill(title,billController,userController)[index].listPlant!))[i].price}\$',
+                                                                        Text('${getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).price}\$',
                                                                           style: const TextStyle(
                                                                             fontSize: 10,
                                                                             color: Color(0xFF498552),
@@ -242,7 +243,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                                           ),),
                                                                         Align(
                                                                           alignment: Alignment.bottomRight,
-                                                                          child: Text( 'x' + getsoluong(lstBill(title,billController,userController)[index].listPlant!)[i],
+                                                                          child: Text( 'x' + lstBill(title,billController,userController)[index].listPlant![i]['plant']['number'].toString(),
                                                                             style: const TextStyle(
                                                                               fontSize: 13,
                                                                               color: Colors.black,
@@ -269,8 +270,8 @@ Widget oderList(String title, BillController billController, UserController user
                                                   onPressed: () async {
                                                     var x = await Get.dialog(
                                                       AlertDialog(
-                                                        title: const Text('you want to change?'),
-                                                        content: const Text('this will change your data!'),
+                                                        title: const Text('Do you want to cancel the order?'),
+                                                        content: const Text('This will result in your order not being delivered'),
                                                         actions: [
                                                           TextButton(
                                                             child: const Text("Close"),
@@ -302,7 +303,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                           ),
                                                           borderRadius: BorderRadius.all(Radius.circular(10))
                                                       ),
-                                                      child: Text(
+                                                      child: const Text(
                                                         'Order cancellation',
                                                         style: TextStyle(
                                                           fontSize: 13,
@@ -312,14 +313,14 @@ Widget oderList(String title, BillController billController, UserController user
                                                         ),
                                                       )),
                                                 )
-                                            ):SizedBox(),
+                                            ):const SizedBox(),
                                             ExpandableButton(       // <-- Collapses when tapped on
-                                              child: Icon(Icons.keyboard_arrow_up,color: Color(0xFF498552),),
+                                              child: const Icon(Icons.keyboard_arrow_up,color: Color(0xFF498552),),
                                             ),
                                           ]
                                       ),
                                       collapsed:ExpandableButton(  // <-- Expands when tapped on the cover photo
-                                        child: Text('Purchased product', style: TextStyle(
+                                        child: const Text('Purchased product', style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -359,53 +360,35 @@ List<Bill> lstBill (String title,BillController billController, UserController u
   return lst;
 }
 
-List<String> getsp(String lstBill){
-  List<String> lstSl = [];
-  var listSanPham =lstBill.split(',');
-  print('so luong tach: ${listSanPham.length}');
+
+
+pl.Plant getPlant(String idPlant){
+ late pl.Plant plant;
+ // print('so luong tach: ${listSanPham.length}');
   // loại bỏ phẩn tử thừa , ở cuối cùng
-  for(int i=0; i<listSanPham.length-1;i++){
-    var x = listSanPham[i].split(':');
-    lstSl.add(x[0]);
-    // print('${lstSl[0]} so luong: ${lstSl[1]}');
-  }
-  // for(var lst in lstBill()){
-  //   var listSanPham = lst.listPlant!.split(',');
-  //   print('so luong tach: ${listSanPham.length}');
-  //   // loại bỏ phẩn tử thừa , ở cuối cùng
-  //   for(int i=0; i<listSanPham.length-1;i++){
-  //     lstSl = listSanPham[i].split(':');
-  //     // print('${lstSl[0]} so luong: ${lstSl[1]}');
-  //   }
-  // }
-  print(lstSl.toString());
-  return lstSl;
-}
-
-List<String> getsoluong(String lstBill){
-  List<String> lstSl = [];
-  var listSanPham =lstBill.split(',');
-  print('so luong tach: ${listSanPham.length}');
-  // loại bỏ phẩn tử thừa , ở cuối cùng
-  for(int i=0; i<listSanPham.length-1;i++){
-    var x = listSanPham[i].split(':');
-    lstSl.add(x[1]);
-    // print('${lstSl[0]} so luong: ${lstSl[1]}');
-  }
-
-
-  return lstSl;
-}
-
-List<Plant> lstPlantBuy(List<String> lstGetSp){
-  List<Plant> lst =[];
-  for(var getsp in lstGetSp){
-    for(var pl in lstPlant){
-      if(int.parse(getsp[0]) == pl.id){
-        print(getsp[0]);
-        lst.add(pl);
-      }
+  for(var x in lstPlant){
+    if(x.id == int.parse(idPlant)){
+      plant = x;
     }
+    // print('${lstSl[0]} so luong: ${lstSl[1]}');
   }
-  return lst;
+
+
+  return plant;
 }
+
+
+
+
+// List<Plant> lstPlantBuy(List<String> lstGetSp){
+//   List<Plant> lst =[];
+//   for(var getsp in lstGetSp){
+//     for(var pl in lstPlant){
+//       if(int.parse(getsp[0]) == pl.id){
+//         print(getsp[0]);
+//         lst.add(pl);
+//       }
+//     }
+//   }
+//   return lst;
+// }

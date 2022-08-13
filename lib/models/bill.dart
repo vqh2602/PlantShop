@@ -1,12 +1,16 @@
 
 
+import 'dart:convert';
+
+
+
 class Bill {
   String? _date;
   int? _sale;
   Address? _address;
   int? _maHD;
   double? _money;
-  String? _listPlant;
+  List<dynamic>? _listPlant;
   String? _status;
 
   Bill(
@@ -15,7 +19,7 @@ class Bill {
         Address? address,
         int? maHD,
         double? money,
-        String? listPlant,
+        List<dynamic>? listPlant,
         String? status}) {
     if (date != null) {
       this._date = date;
@@ -50,8 +54,8 @@ class Bill {
   set maHD(int? maHD) => _maHD = maHD;
   double? get money => _money;
   set money(double? money) => _money = money;
-  String? get listPlant => _listPlant;
-  set listPlant(String? listPlant) => _listPlant = listPlant;
+  List<dynamic>? get listPlant => _listPlant;
+  set listPlant(List<dynamic>? listPlant) => _listPlant = listPlant;
   String? get status => _status;
   set status(String? status) => _status = status;
 
@@ -62,7 +66,9 @@ class Bill {
     json['address'] != null ? Address.fromJson(json['address']) : null;
     _maHD = json['maHD'];
     _money = json['money'];
-    _listPlant = json['listPlant'].toString();
+    _listPlant = jsonDecode(json['listPlant']);
+        // jsonDecode(json['listPlant']).map((job) => MyCart1.fromJson(job)).toList();
+    //MyCart1.fromJson(jsonDecode(json['listPlant'])) as List<MyCart1>?;
     _status = json['status'].toString();
   }
 
@@ -116,6 +122,43 @@ class Address {
     data['address'] = this._address;
     data['phone'] = this._phone;
     data['name'] = this._name;
+    return data;
+  }
+}
+
+// class ListPlant {
+//   Plant? plant;
+//
+//   ListPlant({this.plant});
+//
+//   ListPlant.fromJson(Map<String, dynamic> json) {
+//     plant = json['plant'] != null ? new Plant.fromJson(json['plant']) : null;
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     if (this.plant != null) {
+//       data['plant'] = this.plant!.toJson();
+//     }
+//     return data;
+//   }
+// }
+
+class Plant1 {
+  int? plantID;
+  int? number;
+
+  Plant1({this.plantID, this.number});
+
+  Plant1.fromJson(Map<dynamic, dynamic> json) {
+    plantID = json['plantID'];
+    number = json['number'];
+  }
+
+  Map<dynamic, dynamic> toJson() {
+    final Map<dynamic, dynamic> data = new Map<dynamic, dynamic>();
+    data['plantID'] = this.plantID;
+    data['number'] = this.number;
     return data;
   }
 }
