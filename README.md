@@ -27,3 +27,4 @@
 Một số hình ảnh chức năng: (1080x1920)
 
 ![Screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgblMHE0u99EsuDZVHQRZxOO6KwHeRem7wkOqiBIHGao1WrYZ4bSxTkpmkVF680OQkDLw3kYOtzZL0UPvpb5G5OGu9dqwVj14hPpeQuSgQY6N40WeOmza0DmdV_alq_2aN6pPsf0wr6ZW9myOaCKko5BJZjEcigr2wBhTvh2sbshBSOxpBBOCZK_xJG/s320/Screenshot_2022-08-14-14-48-19%5B1%5D.png)
+![Screenshot](https://scontent.xx.fbcdn.net/v/t1.15752-9/298266910_1018258928889726_6346084804324005436_n.png?_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=48KDpB9ag84AX88KJ-6&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLiV50TfxuuyvAoyH0zhDy9eT1ysfOtUDvXdya5Smcx2g&oe=631D7695)
