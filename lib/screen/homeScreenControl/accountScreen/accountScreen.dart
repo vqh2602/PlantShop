@@ -30,7 +30,8 @@ class AccountScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-
+    billController.getBill(
+        myCartController, userController);
 
     // TODO: implement build
     //throw UnimplementedError();

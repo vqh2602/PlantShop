@@ -65,7 +65,7 @@ Widget oderList(String title, BillController billController, UserController user
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Comfortaa',
                                   ),),
-                                Text(lstBill(title,billController,userController)[index].money.toString() +' \$',
+                                Text(lstBill(title,billController,userController)[index].money!.toStringAsFixed(3) +' \$',
                                   style: const TextStyle(
                                     fontSize: 13,
                                     color: Color(0xFF498552),

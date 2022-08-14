@@ -300,8 +300,6 @@ Widget purchaseOderAndOder(UserController userController, BillController billCon
                   height: 16.h,
                   child:
                   Obx(() {
-                    billController.getBill(
-                        myCartController, userController);
                     return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: getLstPlantBuy(lstBill(

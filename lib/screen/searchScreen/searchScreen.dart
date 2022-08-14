@@ -98,9 +98,10 @@ class _MySearchScreen extends State<SearchScreen>{
                                   Container(
                                     margin: const EdgeInsets.only(left: 10),
                                     child: Text(listPlantResult[index].name,
-                                      style: const TextStyle(
+                                      style:TextStyle(
                                         color: Color(0xFF498552),
                                         fontWeight: FontWeight.bold,
+                                        fontSize: 12.w,
                                         fontFamily: 'Comfortaa',
                                       ),),
                                   ),
@@ -118,9 +119,10 @@ class _MySearchScreen extends State<SearchScreen>{
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text('${listPlantResult[index].price} \$',
-                                            style: const TextStyle(
+                                            style:TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
+                                              fontSize: 12.sp,
                                               fontFamily: 'Comfortaa',
                                             ),),
                                           ElevatedButton(

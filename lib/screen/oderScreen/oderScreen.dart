@@ -25,7 +25,7 @@ String title;
 
   @override
   Widget build(BuildContext context) {
-    billController.getBill(myCartController, userController);
+    // billController.getBill(myCartController, userController);
 
     // TODO: implement build
     return Scaffold(
