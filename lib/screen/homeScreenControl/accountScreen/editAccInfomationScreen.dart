@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
-import 'package:getx_firebase/models/user.dart';
+
 
 class EditAccInformationScreen extends StatelessWidget{
   const EditAccInformationScreen({Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class EditAccInformationScreen extends StatelessWidget{
     // TODO: implement build
     //throw UnimplementedError();
     return Scaffold(
+      backgroundColor: const Color(0xFFf7f7f7),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // Add your onPressed code here!
@@ -58,7 +59,7 @@ class EditAccInformationScreen extends StatelessWidget{
           }
           userController.getUser(userController.user.value!.email);
         },
-        backgroundColor: Color(0xFF498552),
+        backgroundColor: const Color(0xFF498552),
         child: const Icon(Icons.save,color: Colors.white,),
       ),
       body: SafeArea(
@@ -83,12 +84,12 @@ class EditAccInformationScreen extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Email',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Comfortaa',
                           color: Color(0xFF498552)
                       ),),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       decoration:  BoxDecoration(
                         border: Border(
                           bottom: BorderSide( //                    <--- top side
@@ -113,13 +114,13 @@ class EditAccInformationScreen extends StatelessWidget{
                     ),
                     const SizedBox(height: 20,),
                     const Text('Full name',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Comfortaa',
                           color: Color(0xFF498552)
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       decoration:  BoxDecoration(
                         border: Border(
                           bottom: BorderSide( //                    <--- top side
@@ -132,7 +133,7 @@ class EditAccInformationScreen extends StatelessWidget{
                         onChanged: (text) {
                         },
                         controller: textEditingControllerName,
-                        cursorColor: Color(0xFF498552),
+                        cursorColor: const Color(0xFF498552),
                         decoration: null,
                         enabled: true,
                         style: const TextStyle(
@@ -144,12 +145,12 @@ class EditAccInformationScreen extends StatelessWidget{
                     ),
                     const SizedBox(height: 20,),
                     const Text('Phone',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Comfortaa',
                           color: Color(0xFF498552)
                       ),),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       decoration:  BoxDecoration(
                         border: Border(
                           bottom: BorderSide( //                    <--- top side
@@ -162,7 +163,7 @@ class EditAccInformationScreen extends StatelessWidget{
                         onChanged: (text) {
                         },
                         controller: textEditingControllerPhone,
-                        cursorColor: Color(0xFF498552),
+                        cursorColor: const Color(0xFF498552),
                         decoration: null,
                         keyboardType: TextInputType.phone,
                         enabled: true,
@@ -175,7 +176,7 @@ class EditAccInformationScreen extends StatelessWidget{
                     ),
                     const SizedBox(height: 20,),
                     const Text('Address',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Comfortaa',
                           color: Color(0xFF498552)
                       ),),
@@ -194,7 +195,7 @@ class EditAccInformationScreen extends StatelessWidget{
                         onChanged: (text) {
                         },
                         controller: textEditingControllerAddress,
-                        cursorColor: Color(0xFF498552),
+                        cursorColor: const Color(0xFF498552),
                         decoration: null,
                         enabled: true,
                         style: const TextStyle(

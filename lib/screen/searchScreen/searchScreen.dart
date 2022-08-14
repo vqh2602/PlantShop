@@ -70,7 +70,7 @@ class _MySearchScreen extends State<SearchScreen>{
                     itemBuilder: (context, index){
                       return Container(
                         //color: Colors.purple,
-                        height: 180,
+                        height: 20.h,
                         margin: const EdgeInsets.only(top: 0),
                         padding: const EdgeInsets.only(top: 20,bottom: 10),
                         decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class _MySearchScreen extends State<SearchScreen>{
                           children: [
                             Expanded(
                               flex:3,
-                              child: Image.asset(lstPlant[index].image,height: 180,),),
+                              child: Image.asset(lstPlant[index].image,height: 20.h,),),
                             Expanded(flex:7,child: Container(
                               //padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
                               child: Column(

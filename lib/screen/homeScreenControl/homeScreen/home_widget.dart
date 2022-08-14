@@ -60,7 +60,7 @@ Widget homeTitle(List<String> lstTitleControl, HomeController _homeControl){
             margin: const EdgeInsets.only(left: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color:_homeControl.selectTitleControl.value==index? Color(0xFF498552): Colors.transparent,
+              color:_homeControl.selectTitleControl.value==index? const Color(0xFF498552): Colors.transparent,
             ),
             child: Center(
               child: InkWell(
@@ -78,24 +78,26 @@ Widget homeTitle(List<String> lstTitleControl, HomeController _homeControl){
   );
 }
 
-Widget homePlantOffer(){
+Widget homePlantOffer(String lable){
   return ListView.builder(
 
-      itemCount: lstPlantOutDoors().length,
+      itemCount:  lstPlantSmall(lable).length>10?10:lstPlantSmall(lable).length,
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index){
         return Container(
-          //color: Colors.purple,
-          width: 250,
-          height: 300,
-          margin: EdgeInsets.only(left: 20),
+         // color: Colors.purple,
+          // width: 250,
+          // height: 300,
+          width: 55.w,
+          //height: 3.h,
+          margin: const EdgeInsets.only(left: 20),
           child: Stack(
             children: [
               Align(
                 child: Container(
-                  width: 240,
-                  height: 250,
+                  width: 54.h,
+                  height: 28.h,
                   //padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -112,35 +114,38 @@ Widget homePlantOffer(){
                           borderRadius: BorderRadius.only(bottomRight: Radius.circular(50),topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                           color: Color(0xFFC8DACB),
                         ),
-                        child: Text(lstPlantOutDoors()[index].name,
-                          style: const TextStyle(
+                        child: Text( lstPlantSmall(lable)[index].name,
+                          style: TextStyle(
                               color: Color(0xFF498552),
                               fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
                             fontFamily: 'Comfortaa',
                           ),),
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 10,right: 10),
-                        child: Text(lstPlantOutDoors()[index].title, maxLines: 3,overflow: TextOverflow.ellipsis,
+                        child: Text( lstPlantSmall(lable)[index].title, maxLines: 3,overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               color: Colors.grey,
                             fontFamily: 'Comfortaa',
                           ),),
                       ),
                       Container(
-                          margin: EdgeInsets.only(left: 10,right: 10, bottom: 5),
+                          margin: const EdgeInsets.only(left: 10,right: 10, bottom: 5),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('${lstPlantOutDoors()[index].price} \$',
-                                style: const TextStyle(
+                              Text('${ lstPlantSmall(lable)[index].price} \$',
+                                style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
+                                  fontSize: 11.sp,
                                   fontFamily: 'Comfortaa',
                                 ),),
                               ElevatedButton(
-                                  child: const Icon(
-                                      Icons.add
+                                  child: Icon(
+                                      Icons.add,
+                                    size: 7.w,
                                   ),
                                   style: ButtonStyle(
                                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -152,7 +157,7 @@ Widget homePlantOffer(){
                                       )
                                   ),
                                   onPressed: (){
-                                    Get.to(InfoPlantScreen(plant: lstPlantOutDoors()[index],));
+                                    Get.to(InfoPlantScreen(plant:  lstPlantSmall(lable)[index],));
                                   }
                               )
                             ],
@@ -165,7 +170,7 @@ Widget homePlantOffer(){
                 alignment: Alignment.bottomCenter,
               ),
               Align(
-                child: Image.asset(lstPlantOutDoors()[index].image,height: 125,),
+                child: Image.asset( lstPlantSmall(lable)[index].image,height:30.w,),
                 alignment: Alignment.topRight,
               ),
 
@@ -175,7 +180,7 @@ Widget homePlantOffer(){
       });
 }
 
-Widget homePlantFeatured(){
+Widget homePlantFeatured(String lable){
   return Column(
     children: [
       //title
@@ -184,11 +189,11 @@ Widget homePlantFeatured(){
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Featured Plants',
+            Text('Featured Plants',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Comfortaa',
-                  fontSize: 20
+                  fontSize: 15.sp
               ),),
             InkWell(
               onTap: (){
@@ -209,11 +214,11 @@ Widget homePlantFeatured(){
         margin: const EdgeInsets.only(left: 20,right: 20,top: 20),
 
         child: ListView.builder(
-            itemCount: lstPlantInDoors().length,
+            itemCount:  lstPlantBigAndMedium(lable).length>10?10: lstPlantBigAndMedium(lable).length,
             itemBuilder: (context, index){
               return Container(
                 //color: Colors.purple,
-                height: 180,
+                height: 21.h,
                 margin: const EdgeInsets.only(top: 20),
                 padding: const EdgeInsets.only(top: 20,bottom: 10),
                 decoration: BoxDecoration(
@@ -225,64 +230,64 @@ Widget homePlantFeatured(){
                   children: [
                     Expanded(
                       flex:3,
-                      child: Image.asset(lstPlantInDoors()[index].image,height: 180,),),
-                    Expanded(flex:7,child: Container(
-                      //padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment : CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            child: Text(lstPlantInDoors()[index].name,
-                              style: const TextStyle(
-                                  color: Color(0xFF498552),
-                                  fontWeight: FontWeight.bold,
-                                fontFamily: 'Comfortaa',
-                              ),),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10,right: 10),
-                            child: Text(lstPlantInDoors()[index].title, maxLines: 3,overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  color: Colors.grey,
-                                fontFamily: 'Comfortaa',
-                              ),),
-                          ),
-                          Container(
-                              margin: EdgeInsets.only(left: 10,right: 10, bottom: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('${lstPlantInDoors()[index].price} \$',
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      fontFamily: 'Comfortaa',
-                                    ),),
-                                  ElevatedButton(
-                                      child: const Icon(
-                                          Icons.add
-                                      ),
-                                      style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                          backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF498552)),
-                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(100),
-                                              )
-                                          )
-                                      ),
-                                      onPressed: (){
-                                        Get.to(InfoPlantScreen(plant: lstPlantInDoors()[index],));
-                                      }
-                                  )
-                                ],
-                              )
-                          )
+                      child: Image.asset(lstPlantBigAndMedium(lable)[index].image,height:36.w),),
+                    Expanded(flex:7,child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment : CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          child: Text(lstPlantBigAndMedium(lable)[index].name,
+                            style:TextStyle(
+                                color: const Color(0xFF498552),
+                                fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                              fontFamily: 'Comfortaa',
+                            ),),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10,right: 10),
+                          child: Text(lstPlantBigAndMedium(lable)[index].title, maxLines: 3,overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                color: Colors.grey,
+                              fontFamily: 'Comfortaa',
+                            ),),
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(left: 10,right: 10, bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('${lstPlantBigAndMedium(lable)[index].price} \$',
+                                  style:TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    fontSize: 12.sp,
+                                    fontFamily: 'Comfortaa',
+                                  ),),
+                                ElevatedButton(
+                                    child:Icon(
+                                        Icons.add,
+                                      size: 7.w,
+                                    ),
+                                    style: ButtonStyle(
+                                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                        backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF498552)),
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(100),
+                                            )
+                                        )
+                                    ),
+                                    onPressed: (){
+                                      Get.to(InfoPlantScreen(plant:lstPlantBigAndMedium(lable)[index],));
+                                    }
+                                )
+                              ],
+                            )
+                        )
 
-                        ],
-                      ),
+                      ],
                     ),)
 
 

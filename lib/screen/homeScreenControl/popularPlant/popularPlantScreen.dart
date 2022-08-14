@@ -60,30 +60,28 @@ class PopularPlant extends StatelessWidget{
 
               Expanded(
                 flex: 1,
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text('Popular Plant \nAmong The People',
-                      style: const TextStyle(
-                        color: Color(0xFF498552),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        fontFamily: 'Comfortaa',
-                      ),),
-                  ),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text('Popular Plant \nAmong The People',
+                    style:TextStyle(
+                      color: const Color(0xFF498552),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.sp,
+                      fontFamily: 'Comfortaa',
+                    ),),
                 ),),
               Expanded(flex: 8,
                   child: GridView.builder(
                       itemCount: lstPlant.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                         // chiều cao item
-                        mainAxisExtent: 325,
+                        mainAxisExtent: 38.h,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10
                       ),
                       itemBuilder: (context, index){
-                        return Container(
+                        return SizedBox(
                           //color: Colors.purple,
                         //  width: 200,
                           //margin: EdgeInsets.only(left: 20,right: 20),
@@ -92,7 +90,7 @@ class PopularPlant extends StatelessWidget{
                               Align(
                                 child: Container(
                                   //width: 240,
-                                  height: 250,
+                                  height: 29.h,
                                   //padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -125,7 +123,7 @@ class PopularPlant extends StatelessWidget{
                                           ),),
                                       ),
                                       Container(
-                                          margin: EdgeInsets.only(left: 10,right: 10, bottom: 5),
+                                          margin: const EdgeInsets.only(left: 10,right: 10, bottom: 5),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -169,7 +167,8 @@ class PopularPlant extends StatelessWidget{
                             ],
                           ),
                         );
-                      }))
+                      })),
+             // SizedBox(height: 30,),
             ],
           ),
         )

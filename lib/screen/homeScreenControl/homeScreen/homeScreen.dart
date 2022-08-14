@@ -20,8 +20,8 @@ class HomeScreen extends StatelessWidget{
       'All',
       'Outdoors',
       'Indoors',
-      'Garden',
-      'Lake'
+      'Gardens',
+      'Lakes'
     ];
     int selectTitleControl = 0;
 
@@ -48,25 +48,25 @@ class HomeScreen extends StatelessWidget{
                   margin: const EdgeInsets.only(top: 20),
                   child: homeTitle(lstTitleControl, _homeControl),
                 ),
-               Expanded(child: SingleChildScrollView(
+               Expanded(child: Obx(()=>SingleChildScrollView(
                  child: Column(
                    children: [
                      //Plant Offer
                      Container(
-                       height: 300,
+                       height: 36.h,
                        margin: const EdgeInsets.only(top: 20),
-                       child: homePlantOffer(),
+                       child: homePlantOffer(lstTitleControl[_homeControl.selectTitleControl.value]),
                      ),
                      //Featured Plants
                      Container(
-                       child: homePlantFeatured(),
+                       child: homePlantFeatured(lstTitleControl[_homeControl.selectTitleControl.value]),
                      ),
                      const SizedBox(
                        height: 20,
                      )
                    ],
                  ),
-               ))
+               )))
               ],
             ),
           ),

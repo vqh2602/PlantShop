@@ -29,6 +29,7 @@ String title;
 
     // TODO: implement build
     return Scaffold(
+      backgroundColor: const Color(0xFFf7f7f7),
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.only(top: 20),

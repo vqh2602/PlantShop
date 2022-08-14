@@ -337,7 +337,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.creditCard,size: 40, color: Color(0xFF498552),),
+                          child: Icon(FontAwesomeIcons.creditCard,size: 40, color: Color(0xFFC8DACB),),
                         ),
                         InkWell(
                           onTap: (){
@@ -355,7 +355,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.wallet,size: 40,color: Color(0xFFC8DACB)),
+                          child: Icon(FontAwesomeIcons.wallet,size: 40,color: Color(0xFF498552)),
                         )
                       ],
                     )
