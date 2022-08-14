@@ -97,7 +97,7 @@ Widget homePlantOffer(String lable){
               Align(
                 child: Container(
                   width: 54.h,
-                  height: 28.h,
+                  height: 30.h,
                   //padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
