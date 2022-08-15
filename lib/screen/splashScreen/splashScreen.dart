@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/screen/login_Signup/loginScreen.dart';
 import 'package:getx_firebase/screen/login_Signup/signupScreen.dart';
+import 'package:sizer/sizer.dart';
 
 import '../homeScreenControl/homeScreen_Control.dart';
 
@@ -28,8 +29,8 @@ class SplashScreen extends StatelessWidget {
                 children: <Widget>[
                   Image.asset(
                     'assets/images/logo.png',
-                    width: controller.animation.value * 200,
-                    height: controller.animation.value * 200,
+                    width: controller.animation.value * 40.w,
+                    height: controller.animation.value * 40.w,
                   ),
                   SizedBox(
                     child: AnimatedTextKit(

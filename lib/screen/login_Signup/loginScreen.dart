@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/screen/login_Signup/signupScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginScreen extends GetWidget<AuthController>{
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,8 +39,8 @@ class LoginScreen extends GetWidget<AuthController>{
                   children: <Widget>[
                     Image.asset(
                       'assets/images/logo.png',
-                      width:  200,
-                      height:  200,
+                      width:  20.w,
+                      height:  20.h,
                     ),
                     SizedBox(
                       child: AnimatedTextKit(

@@ -19,7 +19,7 @@ import '../../splashScreen/splashScreen.dart';
 import 'accountScreen_widget.dart';
 import 'editAccInfomationScreen.dart';
 
-class AccountScreen extends StatelessWidget{
+class AccountScreen extends GetWidget{
  AccountScreen({Key? key}) : super(key: key);
 
   AuthController authController = Get.put(AuthController());
@@ -30,9 +30,7 @@ class AccountScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    billController.getBill(
-        myCartController, userController);
-
+    billController.onInit();
     // TODO: implement build
     //throw UnimplementedError();
     return Scaffold(
@@ -49,7 +47,7 @@ class AccountScreen extends StatelessWidget{
             // danh sach 10 sản phẩm đã mua gần nhất
             Expanded(
                 flex: 5,
-                child: purchaseOderAndOder(userController,billController,myCartController)),
+                child: purchaseOderAndOder(billController,userController,myCartController)),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:getx_firebase/controllers/controllers/homeControler.dart';
 import 'package:getx_firebase/screen/infoPlantScreen/infoPlantScreen.dart';
+import 'package:getx_firebase/screen/notificationScreen/notificationScreen.dart';
 import 'package:getx_firebase/screen/searchScreen/searchScreen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -37,7 +38,7 @@ Widget homeSearch(TextEditingController textEdittingControllerSearch){
           flex: 2,
           child: InkWell(
             onTap: (){
-              print('textsearch: ${textEdittingControllerSearch.text}');
+              Get.to(const NotificationScreen());
             },
             child:Align(
               alignment: Alignment.centerRight,

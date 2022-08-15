@@ -56,65 +56,70 @@ Widget infoAcc(UserController userController, AuthController authController){
                               backgroundImage: const AssetImage('assets/images/user1.jpg'),
                               radius: 7.h,
                             ),
-                            Expanded(child: Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      flex: 4,
-                                      child:
+                            Expanded(
+                                child:Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                          flex: 4,
+                                          child:
+                                          Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child:
+                                                //userController.user.value!.email
+                                            Text(userController.user.value!.email,
+                                              style:TextStyle(
+                                                  fontFamily: 'Comfortaa',
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.sp
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                            ),
+                                          )),
+                                      const SizedBox(height: 5,),
+                                      Expanded(flex:1,
+                                          child:  Align(
+                                            alignment: Alignment.topLeft,
+                                            child: InkWell(
+                                              onTap: () async {
+                                                var x = await Get.to(const EditAccInformationScreen());
+                                                if(x==null){
+                                                  // rest lại page, reset lại giá trị mới
+                                                  pageController.jumpToPage(4);
+                                                }
+                                              },
+                                              child: const Text('edit account infomation >',
+                                                style: TextStyle(
+                                                    fontFamily: 'Comfortaa',
+                                                    fontSize: 12,
+                                                    color: Color(0xFFE9F0EA)
+                                                ),),
+                                            ),
+                                          )),
                                       Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text(userController.user.value!.email,
-                                          style:TextStyle(
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.sp
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 2,
-                                        ),
-                                      )),
-                                  const SizedBox(height: 5,),
-                                  Expanded(flex:1,
-                                      child:  Align(
                                         alignment: Alignment.topLeft,
-                                        child: InkWell(
-                                          onTap: () async {
-                                            var x = await Get.to(const EditAccInformationScreen());
-                                            if(x==null){
-                                              // rest lại page, reset lại giá trị mới
-                                              pageController.jumpToPage(4);
-                                            }
-                                          },
-                                          child: const Text('edit account infomation >',
-                                            style: TextStyle(
-                                                fontFamily: 'Comfortaa',
-                                                fontSize: 12,
-                                                color: Color(0xFFE9F0EA)
-                                            ),),
-                                        ),
-                                      )),
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: TextButton(
-                                        onPressed: (){
-                                          authController.logout();
-                                          Get.offAll(const SplashScreen());
-                                        },
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.logout_outlined,color: Colors.white,),
-                                            Text('Logout',style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Comfortaa',
-                                            ),)
-                                          ],
-                                        )),
-                                  )
-                                ],
-                              ),
+                                        child: TextButton(
+                                            onPressed: (){
+                                              authController.logout();
+                                              Get.offAll(const SplashScreen());
+                                            },
+                                            child: Row(
+                                              children: const [
+                                                Icon(Icons.logout_outlined,color: Colors.white,),
+                                                Text('Logout',style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Comfortaa',
+                                                ),)
+                                              ],
+                                            )),
+                                      )
+                                    ],
+
+                                )
+
                             ))
                           ],
                         ))
@@ -169,7 +174,7 @@ Widget infoAcc(UserController userController, AuthController authController){
   );
 }
 
-Widget purchaseOderAndOder(UserController userController, BillController billController, MyCartController myCartController){
+Widget purchaseOderAndOder(BillController billController, UserController userController, MyCartController myCartController){
   return SingleChildScrollView(
     child: Column(
       children: [

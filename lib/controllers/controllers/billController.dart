@@ -12,16 +12,23 @@ import '../../screen/homeScreenControl/myCart/payment_processing.dart';
 
 class BillController extends GetxController{
   Rx<List<Bill>> lstBill = Rx<List<Bill>>([]);
+  MyCartController myCartController = Get.put(MyCartController());
+  UserController userController = Get.put(UserController());
 
-  late DatabaseReference _db;
+  // late DatabaseReference _db;
   late FirebaseDatabase database;
   // _db = FirebaseDatabase(
   //     app: await Firebase.initializeApp(),
   //     databaseURL: 'https://woolha-fa3d2.firebaseio.com'
   // ).reference();
 
+  @override
+  void onInit() {
+    getBill();
+    super.onInit();
+  }
 
-  Future<void> createBill(MyCartController myCartController, UserController userController) async {
+  Future<void> createBill() async {
 
     database= FirebaseDatabase.instanceFor(
         app: await Firebase.initializeApp(),
@@ -105,7 +112,7 @@ class BillController extends GetxController{
     }
   }
 
-  Future<void> getBill(MyCartController myCartController, UserController userController) async {
+  Future<void> getBill() async {
     database= FirebaseDatabase.instanceFor(
         app: await Firebase.initializeApp(),
     databaseURL: 'https://getxfirebase-34c80-default-rtdb.asia-southeast1.firebasedatabase.app');
@@ -113,7 +120,7 @@ class BillController extends GetxController{
     //database= FirebaseDatabase.instanceFor(app: await Firebase.initializeApp());
     DatabaseReference ref = database.ref('Bill');
 
-    final snapshot = await ref.child('${userController.user.value!.id}').get();
+    final snapshot = await ref.child('${await userController.user.value!.id}').get();
 
     final map = snapshot.value as Map<dynamic, dynamic>;
 

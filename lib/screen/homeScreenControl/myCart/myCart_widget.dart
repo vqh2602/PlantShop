@@ -467,7 +467,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                         colorText: Colors.white);
                       }else {
                         // tạo bill
-                        billController.createBill(myCartController, userController).whenComplete(()
+                        billController.createBill().whenComplete(()
                         =>  Future.delayed(const Duration(seconds: 1), () {
                           Get.snackbar('Complete purchase', 'Visit your account page to track your order',snackPosition: SnackPosition.TOP,
                               colorText: Colors.black);// Prints after 1 second.

@@ -48,7 +48,8 @@ class AuthController extends GetxController{
      final prefs = await SharedPreferences.getInstance();
      await prefs.setString('loginEmail', email);
 
-     Get.offAll(const HomeScreenControll());
+     //Get.offAll(const HomeScreenControll());
+     Get.offAll(const SplashScreen());
     }on FirebaseException catch(e){
       Get.snackbar('Error login', e.code,snackPosition: SnackPosition.BOTTOM);
     }

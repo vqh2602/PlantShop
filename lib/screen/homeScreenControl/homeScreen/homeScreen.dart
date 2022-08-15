@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget{
                    children: [
                      //Plant Offer
                      Container(
-                       height: 36.h,
+                       height: 38.h,
                        margin: const EdgeInsets.only(top: 20),
                        child: homePlantOffer(lstTitleControl[_homeControl.selectTitleControl.value]),
                      ),

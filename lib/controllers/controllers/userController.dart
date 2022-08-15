@@ -15,6 +15,7 @@ class UserController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    getUser(authController.user!);
   }
 
   Future<void> createUser(String email, String phone, String name, String address) async {

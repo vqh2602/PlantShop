@@ -287,7 +287,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                     if(x){
                                                       billController.updateBill(int.parse(userController.user.value!.id.toString()),int.parse(lstBill(title,billController,userController)[index].maHD!.toString()) );
                                                       Future.delayed(const Duration(seconds: 1), () {
-                                                        billController.getBill(myCartController, userController);
+                                                        billController.getBill();
                                                       });
                                                     }
                                                   },
