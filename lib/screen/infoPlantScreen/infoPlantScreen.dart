@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/myCartController.dart';
 import 'package:getx_firebase/models/plant.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 
 class InfoPlantScreen extends StatelessWidget{
@@ -66,33 +67,44 @@ class InfoPlantScreen extends StatelessWidget{
                         Expanded(
                             flex: 4,
                             child: Container(
+                              height: double.infinity,
                               margin: const EdgeInsets.only(left: 10),
-                              child: Image.asset(plant.image),
+                              child: PhotoView(
+                                backgroundDecoration: BoxDecoration(
+                                  color: Colors.transparent
+                                ),
+                                imageProvider: AssetImage(plant.image),
+                                maxScale: 0.5,
+                                minScale: 0.5,
+                              )
+                                //Image.asset(plant.image),
                             )),
                         Expanded(
                             flex:2,
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Size',style: title(),),
-                                  const SizedBox(height: 5,),
-                                  Text(plant.info.size,style: destitle(),),
-                                  const SizedBox(height: 20,),
-                                  Text('Humidity',style: title(),),
-                                  const SizedBox(height: 5,),
-                                  Text('${plant.info.hum}%',style: destitle(),),
-                                  const SizedBox(height: 20,),
-                                  Text('Light',style: title(),),
-                                  const SizedBox(height: 5,),
-                                  Text(plant.info.light,style: destitle(),),
-                                  const SizedBox(height: 20,),
-                                  Text('Temperature',style: title(),),
-                                  const SizedBox(height: 5,),
-                                  Text(plant.info.temp,style: destitle(),)
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Size',style: title(),),
+                                    const SizedBox(height: 5,),
+                                    Text(plant.info.size,style: destitle(),),
+                                    const SizedBox(height: 20,),
+                                    Text('Humidity',style: title(),),
+                                    const SizedBox(height: 5,),
+                                    Text('${plant.info.hum}%',style: destitle(),),
+                                    const SizedBox(height: 20,),
+                                    Text('Light',style: title(),),
+                                    const SizedBox(height: 5,),
+                                    Text(plant.info.light,style: destitle(),),
+                                    const SizedBox(height: 20,),
+                                    Text('Temperature',style: title(),),
+                                    const SizedBox(height: 5,),
+                                    Text(plant.info.temp,style: destitle(),)
+                                  ],
+                                ),
                               ),
                             ))
                       ],

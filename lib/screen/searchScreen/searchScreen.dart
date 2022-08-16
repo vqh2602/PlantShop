@@ -88,7 +88,7 @@ class _MySearchScreen extends State<SearchScreen>{
                         children: [
                           Expanded(
                             flex:3,
-                            child: Image.asset(lstPlant[index].image,height: 20.h,),),
+                            child: Image.asset(listPlantResult[index].image,height: 20.h,),),
                           Expanded(flex:7,child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment : CrossAxisAlignment.start,

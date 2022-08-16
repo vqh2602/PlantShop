@@ -30,7 +30,7 @@ class AppRoute {
     ),
     GetPage(
       name: Paths.SEARCH,
-      page: () => SearchScreen(),
+      page: () => const SearchScreen(),
 
     ),
     GetPage(
