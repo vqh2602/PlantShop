@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_firebase/controllers/controllers/myCartController.dart';
 import 'package:getx_firebase/models/plant.dart';
-import 'package:getx_firebase/models/sqlLiteMyCart/myCart.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 
 class InfoPlantScreen extends StatelessWidget{
@@ -40,7 +37,7 @@ class InfoPlantScreen extends StatelessWidget{
       RepaintBoundary(
           key: previewContainer,
           child: Container(
-            color: Color(0xFFE9F0EA),
+            color: const Color(0xFFE9F0EA),
             margin: const EdgeInsets.only(top: 40),
             child: Column(
               children: [
@@ -58,50 +55,47 @@ class InfoPlantScreen extends StatelessWidget{
                             "image/png",
                             text: "Buy now!");
                       },
-                      child: Icon(Icons.share,color: Color(0xFF498552),size: 35,),
+                      child: const Icon(Icons.share,color: Color(0xFF498552),size: 35,),
                     ),
                   ),
                 ),
                 Expanded(
                     flex: 4,
-                    child: Container(
-                      //margin: EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 4,
-                              child: Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Image.asset(plant.image),
-                              )),
-                          Expanded(
-                              flex:2,
-                              child: Container(
-                                margin: const EdgeInsets.only(left: 10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Size',style: title(),),
-                                    const SizedBox(height: 5,),
-                                    Text(plant.info.size,style: destitle(),),
-                                    const SizedBox(height: 20,),
-                                    Text('Humidity',style: title(),),
-                                    const SizedBox(height: 5,),
-                                    Text('${plant.info.hum}%',style: destitle(),),
-                                    const SizedBox(height: 20,),
-                                    Text('Light',style: title(),),
-                                    const SizedBox(height: 5,),
-                                    Text(plant.info.light,style: destitle(),),
-                                    const SizedBox(height: 20,),
-                                    Text('Temperature',style: title(),),
-                                    const SizedBox(height: 5,),
-                                    Text(plant.info.temp,style: destitle(),)
-                                  ],
-                                ),
-                              ))
-                        ],
-                      ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 4,
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              child: Image.asset(plant.image),
+                            )),
+                        Expanded(
+                            flex:2,
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Size',style: title(),),
+                                  const SizedBox(height: 5,),
+                                  Text(plant.info.size,style: destitle(),),
+                                  const SizedBox(height: 20,),
+                                  Text('Humidity',style: title(),),
+                                  const SizedBox(height: 5,),
+                                  Text('${plant.info.hum}%',style: destitle(),),
+                                  const SizedBox(height: 20,),
+                                  Text('Light',style: title(),),
+                                  const SizedBox(height: 5,),
+                                  Text(plant.info.light,style: destitle(),),
+                                  const SizedBox(height: 20,),
+                                  Text('Temperature',style: title(),),
+                                  const SizedBox(height: 5,),
+                                  Text(plant.info.temp,style: destitle(),)
+                                ],
+                              ),
+                            ))
+                      ],
                     )),
                 Expanded(
                     flex: 5,
@@ -131,7 +125,7 @@ class InfoPlantScreen extends StatelessWidget{
                                       fontFamily: 'Comfortaa',
                                     ),
                                   ),
-                                  SizedBox(height: 10,),
+                                  const SizedBox(height: 10,),
                                   Text(
                                     '${plant.price} \$',
                                     style: const TextStyle(
@@ -160,19 +154,17 @@ class InfoPlantScreen extends StatelessWidget{
                                       fontFamily: 'Comfortaa',
                                     ),
                                   ),
-                                  Container(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: [
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/1a.png',width: 100,height: 100,),),
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/4a.png',width: 100,height: 100,),),
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/3a.png',width: 100,height: 100,),),
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/4a.png',width: 100,height: 100,),),
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/2a.png',width: 100,height: 100,),),
-                                          Padding(padding: EdgeInsets.only(right: 20),child: Image.asset('assets/images/1a.png',width: 100,height: 100,),),
-                                        ],
-                                      ),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/1a.png',width: 100,height: 100,),),
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/4a.png',width: 100,height: 100,),),
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/3a.png',width: 100,height: 100,),),
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/4a.png',width: 100,height: 100,),),
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/2a.png',width: 100,height: 100,),),
+                                        Padding(padding: const EdgeInsets.only(right: 20),child: Image.asset('assets/images/1a.png',width: 100,height: 100,),),
+                                      ],
                                     ),
                                   )
                                 ],
@@ -180,7 +172,7 @@ class InfoPlantScreen extends StatelessWidget{
                             )),
                             Expanded(
                               flex: 2,
-                              child:  Padding(padding: EdgeInsets.only(top: 20,bottom: 20,right: 20),
+                              child:  Padding(padding: const EdgeInsets.only(top: 20,bottom: 20,right: 20),
                                 child:  ElevatedButton(
                                     onPressed: (){
                                       myCartController.createLstMyCart(plant.id,1);

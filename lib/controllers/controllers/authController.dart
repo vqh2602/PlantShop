@@ -4,7 +4,6 @@ import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:getx_firebase/screen/splashScreen/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../screen/homeScreenControl/homeScreen_Control.dart';
 
 class AuthController extends GetxController{
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -35,7 +34,7 @@ class AuthController extends GetxController{
         Get.snackbar('Error create acc', '',snackPosition: SnackPosition.BOTTOM);
       }
     }on FirebaseException catch(e){
-      print('loi');
+      //print('loi');
       Get.snackbar('Error create acc', e.code,snackPosition: SnackPosition.BOTTOM);
     }
   }

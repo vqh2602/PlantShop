@@ -182,7 +182,7 @@ class EditAccInformationScreen extends StatelessWidget{
                       ),),
                     const SizedBox(height: 10,),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       decoration:  BoxDecoration(
                         border: Border(
                           bottom: BorderSide( //                    <--- top side

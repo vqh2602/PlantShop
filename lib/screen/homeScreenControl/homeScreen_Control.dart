@@ -1,12 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
 import 'package:getx_firebase/screen/homeScreenControl/popularPlant/popularPlantScreen.dart';
-import 'package:getx_firebase/screen/homeScreenControl/qrScanPlant/qrScanPlant.dart';
+import 'package:getx_firebase/screen/route/route.dart';
 
 import '../../main.dart';
 import 'accountScreen/accountScreen.dart';
@@ -21,11 +20,11 @@ class HomeScreenControll extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _myHomeScreenControll();
+    return _MyHomeScreenControll();
   }
 
 }
-class _myHomeScreenControll extends State<HomeScreenControll>{
+class _MyHomeScreenControll extends State<HomeScreenControll>{
   var _bottomNavIndex = 0; //default index of a
   //late PageController _pageController;
   final iconList = <IconData>[
@@ -60,7 +59,8 @@ class _myHomeScreenControll extends State<HomeScreenControll>{
       backgroundColor: const Color(0xFFf7f7f7),
       //destination screen
       floatingActionButton: FloatingActionButton(onPressed: () {
-        Get.to(QRViewExample());
+        //Get.to(QRViewExample());
+        Get.toNamed(Paths.QRSCAN);
       },
         child: const Icon(Icons.qr_code_scanner,size: 30,color: Colors.white,),
         //params
@@ -85,21 +85,18 @@ class _myHomeScreenControll extends State<HomeScreenControll>{
 
     //other params
     ),
-    body: Container
-    (
-        child: PageView(
-          controller: pageController,
-          onPageChanged: (index) {
-            setState(() => _bottomNavIndex = index);
-          },
-          children: <Widget>[
-            const HomeScreen(),
-            const PopularPlant(),
-            MyCartScreen(),
-            AccountScreen()
-          ],
-        ),
-      ),
+    body: PageView(
+      controller: pageController,
+      onPageChanged: (index) {
+        setState(() => _bottomNavIndex = index);
+      },
+      children: <Widget>[
+        const HomeScreen(),
+        const PopularPlant(),
+        MyCartScreen(),
+        AccountScreen()
+      ],
+    ),
     );
   }
 

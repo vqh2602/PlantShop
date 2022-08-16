@@ -1,21 +1,20 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 
 import '../../models/user.dart';
 
 class UserController extends GetxController{
-  AuthController authController = Get.find();
+  AuthController authController = Get.put(AuthController());
   Rx<UserCustom?> user = Rx<UserCustom?>(null);
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getUser(authController.user!);
+    //getUser(authController.user!);
   }
 
   Future<void> createUser(String email, String phone, String name, String address) async {
@@ -28,7 +27,7 @@ class UserController extends GetxController{
         // ...
 
         // cạp nhat ad
-        print('id: ${data["idLastUser"]}');
+        //print('id: ${data["idLastUser"]}');
         final user = <String, dynamic>{
           "email": email,
           "phone": phone,
@@ -78,7 +77,7 @@ class UserController extends GetxController{
             final data = doc.data() as Map<String, dynamic>;
             // ...
             UserCustom userCustom = UserCustom(id: data["idUser"],email: data["email"], name: data["name"], phone: data["phone"], address: data["address"]);
-            print("in customusser: ${userCustom.name}");
+            //print("in customusser: ${userCustom.name}");
             //await Future.delayed(const Duration(seconds: 1));
 
             user.value = userCustom;
@@ -100,7 +99,7 @@ class UserController extends GetxController{
         final docRef =db.collection("users").doc(email);
         await docRef.get().then(
               (DocumentSnapshot doc) async {
-            final data = doc.data() as Map<String, dynamic>;
+            //final data = doc.data() as Map<String, dynamic>;
             // ...
             // print(difference.inDays);
               // cạp nhat ad

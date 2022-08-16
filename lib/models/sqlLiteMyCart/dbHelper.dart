@@ -42,9 +42,9 @@ class DBHelper {
   }
 
   Future<MyCart> save(MyCart myCart) async {  // insert employee vào bảng đơn giản
-    int? resule = 0;
+    // int? resule = 0;
     var dbClient = await db;
-    resule = await dbClient?.insert(TABLE, myCart.toMap());
+   var resule = await dbClient?.insert(TABLE, myCart.toMap());
     return myCart;
     /*
     await dbClient.transaction((txn) async {
@@ -78,10 +78,10 @@ class DBHelper {
     return result;
   }
 
-  Future<int?> update(MyCart myCart) async {
+  Future<void> update(MyCart myCart) async {
     var dbClient = await db;
  if(await checkNumberInMyCart(myCart.email!, myCart.idPlant!, myCart.number!) ){
-   return await dbClient?.update(TABLE, myCart.toMap(),
+   await dbClient?.update(TABLE, myCart.toMap(),
        where: '$EMAIL = \"$EMAIL\" AND $IDPLANT = ${myCart.idPlant}');
  }
   }

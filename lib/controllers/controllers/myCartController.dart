@@ -1,8 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/models/sqlLiteMyCart/dbHelper.dart';
@@ -18,7 +14,7 @@ class MyCartController extends GetxController{
     // Obtain shared preferences.
    // final prefs = await SharedPreferences.getInstance();
     lstMyCart.value = await dbHelper.getDataMyCart(authController.user!);
-    print(lstMyCart.value!.length);
+    //print(lstMyCart.value!.length);
     return await dbHelper.getDataMyCart(authController.user!);
   }
 

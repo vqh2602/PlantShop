@@ -1,15 +1,12 @@
 import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
-import 'package:getx_firebase/screen/login_Signup/loginScreen.dart';
-import 'package:getx_firebase/screen/login_Signup/signupScreen.dart';
 import 'package:sizer/sizer.dart';
 
-import '../homeScreenControl/homeScreen_Control.dart';
+import '../route/route.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -51,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                       ],
                      // isRepeatingAnimation: true,
                       onTap: () {
-                        print("Tap Event");
+                        //print("Tap Event");
                       },
                     ),
                   )
@@ -69,7 +66,7 @@ class SplashScreenViewModel extends GetxController
     with GetSingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> animation;
-  AuthController authController = Get.find<AuthController>();
+  AuthController authController = Get.put(AuthController());
 
   @override
   void onInit() {
@@ -77,11 +74,14 @@ class SplashScreenViewModel extends GetxController
     Timer(
         const Duration(seconds: 4),
         () => authController.user != null
-            ? Get.off(
-                const HomeScreenControll(),
+            ? 
+       // Get.off(const HomeScreenControll(),
+      Get.offNamed(Paths.HOME)
          // LoginScreen()
-              )
-            : Get.off(const LoginScreen()));
+              //)
+            : Get.offNamed(Paths.LOGIN)
+    //Get.off(const LoginScreen())
+        );
     super.onInit();
   }
 

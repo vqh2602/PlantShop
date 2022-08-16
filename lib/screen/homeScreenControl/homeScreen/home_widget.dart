@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:getx_firebase/controllers/controllers/homeControler.dart';
 import 'package:getx_firebase/screen/infoPlantScreen/infoPlantScreen.dart';
-import 'package:getx_firebase/screen/notificationScreen/notificationScreen.dart';
-import 'package:getx_firebase/screen/searchScreen/searchScreen.dart';
+import 'package:getx_firebase/screen/route/route.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../data/plantData.dart';
 import '../../../main.dart';
-import '../popularPlant/popularPlantScreen.dart';
 
 Widget homeSearch(TextEditingController textEdittingControllerSearch){
   return Row(
@@ -18,7 +14,9 @@ Widget homeSearch(TextEditingController textEdittingControllerSearch){
       Expanded(
           flex:10,
           child: InkWell(
-              onTap: ()=>Get.to(SearchScreen()),
+              onTap: ()=>
+                  Get.toNamed(Paths.SEARCH),
+                  //Get.to(SearchScreen()),
             child: TextField(
               controller: textEdittingControllerSearch,
               enabled: false,
@@ -38,7 +36,8 @@ Widget homeSearch(TextEditingController textEdittingControllerSearch){
           flex: 2,
           child: InkWell(
             onTap: (){
-              Get.to(const NotificationScreen());
+              //Get.to(const NotificationScreen());
+              Get.toNamed(Paths.NOTIFI);
             },
             child:Align(
               alignment: Alignment.centerRight,
@@ -117,7 +116,7 @@ Widget homePlantOffer(String lable){
                         ),
                         child: Text( lstPlantSmall(lable)[index].name,
                           style: TextStyle(
-                              color: Color(0xFF498552),
+                              color: const Color(0xFF498552),
                               fontWeight: FontWeight.bold,
                             fontSize: 12.sp,
                             fontFamily: 'Comfortaa',
@@ -150,7 +149,7 @@ Widget homePlantOffer(String lable){
                                   ),
                                   style: ButtonStyle(
                                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF498552)),
+                                      backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF498552)),
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(100),
@@ -247,7 +246,7 @@ Widget homePlantFeatured(String lable){
                             ),),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 10,right: 10),
+                          margin: const EdgeInsets.only(left: 10,right: 10),
                           child: Text(lstPlantBigAndMedium(lable)[index].title, maxLines: 3,overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 color: Colors.grey,
@@ -255,7 +254,7 @@ Widget homePlantFeatured(String lable){
                             ),),
                         ),
                         Container(
-                            margin: EdgeInsets.only(left: 10,right: 10, bottom: 5),
+                            margin: const EdgeInsets.only(left: 10,right: 10, bottom: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

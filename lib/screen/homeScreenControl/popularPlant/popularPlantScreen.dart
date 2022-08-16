@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:getx_firebase/data/plantData.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +15,7 @@ class PopularPlant extends StatelessWidget{
     // TODO: implement build
    // throw UnimplementedError();
     return Scaffold(
-      backgroundColor: Color(0xFFf7f7f7),
+      backgroundColor: const Color(0xFFf7f7f7),
       body: SafeArea(
         child:Container(
           margin: const EdgeInsets.only(left: 20,right: 20),
@@ -35,7 +33,7 @@ class PopularPlant extends StatelessWidget{
                             controller: _textEditTingControllerPopPlantSearch,
                             enabled: false,
                             decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.search,size: 7.w,color: Color(0xFF498552),),
+                                prefixIcon: Icon(Icons.search,size: 7.w,color: const Color(0xFF498552),),
                                 hintText: 'Search',
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(20),
                                     borderSide: const BorderSide(color: Color(0xFF498552), width: 1)),
@@ -139,7 +137,7 @@ class PopularPlant extends StatelessWidget{
                                                   ),
                                                   style: ButtonStyle(
                                                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF498552)),
+                                                      backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF498552)),
                                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                                           RoundedRectangleBorder(
                                                             borderRadius: BorderRadius.circular(100),

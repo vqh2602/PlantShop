@@ -71,7 +71,7 @@ class BillController extends GetxController{
 
     final snapshotBillId = await ref.child('idLastBill/idLastBill').get();
     if (snapshotBillId.exists) {
-    print(snapshotBillId.value);
+    //print(snapshotBillId.value);
 
     // thêm hoá đơn
     DatabaseReference ref1 = database.ref('Bill/${userController.user.value!.id}/${snapshotBillId.value.toString()}');
@@ -108,7 +108,7 @@ class BillController extends GetxController{
      
     });
     } else {
-    print('No data available.');
+    //print('No data available.');
     }
   }
 
@@ -126,14 +126,14 @@ class BillController extends GetxController{
 
     List<Bill> lstB = [];
     map.forEach((key, value) {
-      print(value);
+      //print(value);
       final bill = Bill.fromJson(value);
       //
      lstB.add(bill);
       // list.add(user);
     });
     lstBill.value = lstB;
-    print(lstB[0].listPlant![0]['plant']['number'].toString());
+   // print(lstB[0].listPlant![0]['plant']['number'].toString());
   }
 
   Future<void> updateBill(int userId, int billId ) async {

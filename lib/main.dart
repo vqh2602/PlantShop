@@ -1,16 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/bindings/authBinding.dart';
-import 'package:getx_firebase/screen/login_Signup/loginScreen.dart';
-import 'package:getx_firebase/screen/splashScreen/splashScreen.dart';
+import 'package:getx_firebase/screen/route/route.dart';
 import 'package:sizer/sizer.dart';
 import 'firebase_options.dart';
 
 // page controller để sử dụng và điều hướng homecontrol toàn app
 late PageController pageController;
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -68,7 +66,9 @@ class MyApp extends StatelessWidget {
                 primarySwatch: mcgpalette0,
               ),
               initialBinding: AuthBinding(),
-              home: const SplashScreen(),
+              initialRoute: AppRoute.INITIAL,
+              getPages: AppRoute.routes,
+              //home: const SplashScreen(),
             );
           }
       );

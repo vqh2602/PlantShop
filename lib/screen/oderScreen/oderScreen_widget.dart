@@ -1,7 +1,6 @@
 
 import 'package:date_format/date_format.dart';
 import 'package:expandable/expandable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,7 @@ import '../../models/plant.dart' as pl;
 Widget oderList(String title, BillController billController, UserController userController, MyCartController myCartController){
   return Column(
     children: [
-      Text('$title',
+      Text(title,
         style: const TextStyle(
           fontSize: 20,
           color: Color(0xFF498552),
@@ -97,7 +96,7 @@ Widget oderList(String title, BillController billController, UserController user
                             // thoong tin ng dung
                             Container(
                               margin: const EdgeInsets.only(top: 10),
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               decoration: const BoxDecoration(
                                 border: Border(
                                   top: BorderSide( //                    <--- top side
@@ -111,52 +110,50 @@ Widget oderList(String title, BillController billController, UserController user
                                     child: ExpandablePanel(
                                       expanded:Column(
                                           children: [
-                                            Container(
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    children:[
-                                                      const Icon(FontAwesomeIcons.user,size: 20,color: Color(0xFF498552),
-                                                      ),
-                                                      const SizedBox(width: 5,),
-                                                      Text(lstBill(title,billController,userController)[index].address!.name!,
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'Comfortaa',
-                                                        ),),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(height: 20,),
-                                                  Row(
-                                                    children:[
-                                                      const Icon(Icons.local_phone_outlined,size: 20,color: Color(0xFF498552),),
-                                                      const SizedBox(width: 5,),
-                                                      Text(lstBill(title,billController,userController)[index].address!.phone!,
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'Comfortaa',
-                                                        ),),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(height: 20,),
-                                                  Row(
-                                                    children: [
-                                                      const Icon(Icons.location_on_outlined,size: 20,color: Color(0xFF498552),),
-                                                      const SizedBox(width: 5,),
-                                                      Expanded(child:  Text(lstBill(title,billController,userController)[index].address!.address!
-                                                        ,overflow: TextOverflow.ellipsis,
-                                                        maxLines: 2,
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'Comfortaa',
-                                                        ),),)
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
+                                            Column(
+                                              children: [
+                                                Row(
+                                                  children:[
+                                                    const Icon(FontAwesomeIcons.user,size: 20,color: Color(0xFF498552),
+                                                    ),
+                                                    const SizedBox(width: 5,),
+                                                    Text(lstBill(title,billController,userController)[index].address!.name!,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Comfortaa',
+                                                      ),),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 20,),
+                                                Row(
+                                                  children:[
+                                                    const Icon(Icons.local_phone_outlined,size: 20,color: Color(0xFF498552),),
+                                                    const SizedBox(width: 5,),
+                                                    Text(lstBill(title,billController,userController)[index].address!.phone!,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Comfortaa',
+                                                      ),),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 20,),
+                                                Row(
+                                                  children: [
+                                                    const Icon(Icons.location_on_outlined,size: 20,color: Color(0xFF498552),),
+                                                    const SizedBox(width: 5,),
+                                                    Expanded(child:  Text(lstBill(title,billController,userController)[index].address!.address!
+                                                      ,overflow: TextOverflow.ellipsis,
+                                                      maxLines: 2,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Comfortaa',
+                                                      ),),)
+                                                  ],
+                                                )
+                                              ],
                                             ),
                                             ExpandableButton(       // <-- Collapses when tapped on
-                                              child: Icon(Icons.keyboard_arrow_up,color: Colors.black,),
+                                              child: const Icon(Icons.keyboard_arrow_up,color: Colors.black,),
                                             ),
                                           ]
                                       ),
@@ -175,8 +172,8 @@ Widget oderList(String title, BillController billController, UserController user
 
                             // danh sach sp
                             Container(
-                              margin: EdgeInsets.only(top: 10),
-                              padding: EdgeInsets.only(top: 10),
+                              margin: const EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               decoration: const BoxDecoration(
                                 border: Border(
                                   top: BorderSide( //                    <--- top side
@@ -209,53 +206,50 @@ Widget oderList(String title, BillController billController, UserController user
                                                       child: Row(
                                                         children: [
                                                           Expanded(flex:4,child: Container(
-                                                            padding: EdgeInsets.all(10),
+                                                            padding: const EdgeInsets.all(10),
                                                             child: Image.asset(getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).image,height: 50,),
                                                           ),),
                                                           Expanded(
                                                               flex:7,
-                                                              child:  Container(
-                                                                // color: Colors.purple,
-                                                                child: Column(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                  children: [
+                                                              child:  Column(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
 
-                                                                    Align(
-                                                                      alignment: Alignment.topLeft,
-                                                                      child: Text(getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).name,
+                                                                  Align(
+                                                                    alignment: Alignment.topLeft,
+                                                                    child: Text(getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).name,
+                                                                      style: const TextStyle(
+                                                                        fontSize: 13,
+                                                                        color: Colors.black,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        fontFamily: 'Comfortaa',
+                                                                      ),),
+                                                                  ),
+
+                                                                  Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                    children: [
+                                                                      Text('${getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).price}\$',
                                                                         style: const TextStyle(
-                                                                          fontSize: 13,
-                                                                          color: Colors.black,
+                                                                          fontSize: 10,
+                                                                          color: Color(0xFF498552),
                                                                           fontWeight: FontWeight.bold,
                                                                           fontFamily: 'Comfortaa',
                                                                         ),),
-                                                                    ),
-
-                                                                    Row(
-                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                      children: [
-                                                                        Text('${getPlant(lstBill(title,billController,userController)[index].listPlant![i]['plant']['plantID'].toString()).price}\$',
+                                                                      Align(
+                                                                        alignment: Alignment.bottomRight,
+                                                                        child: Text( 'x' + lstBill(title,billController,userController)[index].listPlant![i]['plant']['number'].toString(),
                                                                           style: const TextStyle(
-                                                                            fontSize: 10,
-                                                                            color: Color(0xFF498552),
+                                                                            fontSize: 13,
+                                                                            color: Colors.black,
                                                                             fontWeight: FontWeight.bold,
                                                                             fontFamily: 'Comfortaa',
                                                                           ),),
-                                                                        Align(
-                                                                          alignment: Alignment.bottomRight,
-                                                                          child: Text( 'x' + lstBill(title,billController,userController)[index].listPlant![i]['plant']['number'].toString(),
-                                                                            style: const TextStyle(
-                                                                              fontSize: 13,
-                                                                              color: Colors.black,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontFamily: 'Comfortaa',
-                                                                            ),),
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
 
-                                                                  ],
-                                                                ),
+                                                                ],
                                                               ))
 
                                                         ],
@@ -292,7 +286,7 @@ Widget oderList(String title, BillController billController, UserController user
                                                     }
                                                   },
                                                   child: Container(
-                                                      padding: EdgeInsets.all(5),
+                                                      padding: const EdgeInsets.all(5),
                                                       decoration: const BoxDecoration(
                                                           gradient: LinearGradient(
                                                             colors: <Color>[

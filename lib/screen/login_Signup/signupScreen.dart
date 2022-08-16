@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:getx_firebase/controllers/bindings/authBinding.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 
 import 'loginScreen.dart';
@@ -45,60 +43,60 @@ class SignupScreen extends GetWidget<AuthController>{
                             prefixIcon: const Icon(Icons.account_circle),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 width: 1,
                                 style: BorderStyle.none,
                               ),
                             ),
                           ),
                         ),),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Padding(padding: const EdgeInsets.only(left: 20,right: 20),
                         child: TextField(
                           controller: _textEditingControllerEmail,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             hintText: 'Email',
-                            prefixIcon: Icon(Icons.email),
+                            prefixIcon: const Icon(Icons.email),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 width: 1,
                                 style: BorderStyle.none,
                               ),
                             ),
                           ),
                         ),),
-                      SizedBox(height: 20,),
-                      Padding(padding: EdgeInsets.only(left: 20,right: 20),
+                      const SizedBox(height: 20,),
+                      Padding(padding: const EdgeInsets.only(left: 20,right: 20),
                         child: TextField(
                           controller: _textEditingControllerPass,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Password',
-                            prefixIcon: Icon(Icons.password),
+                            prefixIcon: const Icon(Icons.password),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 width: 1,
                                 style: BorderStyle.none,
                               ),
                             ),
                           ),),
                       ),
-                      SizedBox(height: 20,),
-                      Padding(padding: EdgeInsets.only(left: 20,right: 20),
+                      const SizedBox(height: 20,),
+                      Padding(padding: const EdgeInsets.only(left: 20,right: 20),
                         child: TextField(
                           controller: _textEditingControllerPassConfirm,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Confirm Password',
-                            prefixIcon: Icon(Icons.password),
+                            prefixIcon: const Icon(Icons.password),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 width: 1,
                                 style: BorderStyle.none,
                               ),
@@ -109,7 +107,7 @@ class SignupScreen extends GetWidget<AuthController>{
                     ],
                   ),
 
-                  Padding(padding: EdgeInsets.all(20),
+                  Padding(padding: const EdgeInsets.all(20),
                     child:  ElevatedButton(
                         onPressed: (){
                           if(_textEditingControllerPassConfirm.text != _textEditingControllerPass.text){
@@ -138,7 +136,7 @@ class SignupScreen extends GetWidget<AuthController>{
                           ),)),
                         )),
                   ),
-                  Padding(padding: EdgeInsets.all(20),
+                  Padding(padding: const EdgeInsets.all(20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

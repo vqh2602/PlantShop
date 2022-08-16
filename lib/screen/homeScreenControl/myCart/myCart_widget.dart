@@ -1,9 +1,4 @@
-import 'dart:collection';
-import 'dart:convert';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -13,124 +8,119 @@ import 'package:getx_firebase/models/sqlLiteMyCart/myCart.dart';
 import 'package:getx_firebase/screen/homeScreenControl/myCart/payment_processing.dart';
 
 import '../../../controllers/controllers/billController.dart';
-import '../../../models/bill.dart';
+
 
 Widget listItemInCart(MyCartController myCartController, BuildContext context){
-  return Container(
-    child: SizedBox(
-      height: double.infinity,
-      width: double.infinity,
-      child:  ListView.builder(
-          itemCount: myCartController.lstMyCart.value?.length,
-          itemBuilder: (context, index){
-            return Container(
-              padding:const EdgeInsets.only(top: 0,bottom: 0),
-              decoration: BoxDecoration(
-                //color: Colors.red,
-                  border: Border(
-                      bottom: BorderSide(
-                          color: Colors.grey.shade300,
-                          width: 1
-                      )
-                  )
-              ),
-              child: Row(
-                children: [
-                  Expanded(flex:4,child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Image.asset('${getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.image}',height: 100,),
-                  ),),
-                  Expanded(
-                      flex:7,
-                      child:  Container(
-                        // color: Colors.purple,
-                        child: Column(
+  return SizedBox(
+    height: double.infinity,
+    width: double.infinity,
+    child:  ListView.builder(
+        itemCount: myCartController.lstMyCart.value?.length,
+        itemBuilder: (context, index){
+          return Container(
+            padding:const EdgeInsets.only(top: 0,bottom: 0),
+            decoration: BoxDecoration(
+              //color: Colors.red,
+                border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey.shade300,
+                        width: 1
+                    )
+                )
+            ),
+            child: Row(
+              children: [
+                Expanded(flex:4,child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Image.asset(getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.image,height: 100,),
+                ),),
+                Expanded(
+                    flex:7,
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children:[
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.name,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Comfortaa',
+                                ),),
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child:  Text('Size • ${getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.info.size}',
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.grey,
+                                  fontFamily: 'Comfortaa',
+                                ),),
+                            ),
+
+                          ],
+                        ),
+                        const SizedBox(height: 20,),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              children:[
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.name,
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Comfortaa',
-                                    ),),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child:  Text('Size • ${getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.info.size}',
-                                    style: const TextStyle(
-                                      fontSize: 11,
-                                      color: Colors.grey,
-                                      fontFamily: 'Comfortaa',
-                                    ),),
-                                ),
-
-                              ],
-                            ),
-                            SizedBox(height: 20,),
+                             Text('${getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.price}\$',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Comfortaa',
+                              ),),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                 Text('${getPlant(myCartController.lstMyCart.value![index]!.idPlant!)!.price}\$',
+                                InkWell(
+                                  onTap: (){
+                                    myCartController.dbHelper.update(
+                                      MyCart(
+                                        id: myCartController.lstMyCart.value![index]!.id,
+                                          email: myCartController.lstMyCart.value![index]!.email,
+                                          idPlant: myCartController.lstMyCart.value![index]!.idPlant,
+                                          number: myCartController.lstMyCart.value![index]!.number! - 1)
+                                    ).whenComplete(() =>  myCartController.getLstMyCart());
+
+                                  },
+                                  child: const Icon(Icons.remove_circle_outline,size: 35,color: Colors.grey,),
+                                ),
+                                Text(' ${myCartController.lstMyCart.value![index]!.number} ',
                                   style: const TextStyle(
                                     fontSize: 15,
-                                    color: Colors.black,
+                                    color: Color(0xFF498552),
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Comfortaa',
                                   ),),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    InkWell(
-                                      onTap: (){
-                                        myCartController.dbHelper.update(
-                                          MyCart(
+                                InkWell(
+                                  onTap: (){
+                                    myCartController.dbHelper.update(
+                                        MyCart(
                                             id: myCartController.lstMyCart.value![index]!.id,
-                                              email: myCartController.lstMyCart.value![index]!.email,
-                                              idPlant: myCartController.lstMyCart.value![index]!.idPlant,
-                                              number: myCartController.lstMyCart.value![index]!.number! - 1)
-                                        ).whenComplete(() =>  myCartController.getLstMyCart());
+                                            email: myCartController.lstMyCart.value![index]!.email,
+                                            idPlant: myCartController.lstMyCart.value![index]!.idPlant,
+                                            number: myCartController.lstMyCart.value![index]!.number! + 1)
+                                    ).whenComplete(() =>  myCartController.getLstMyCart());
 
-                                      },
-                                      child: Icon(Icons.remove_circle_outline,size: 35,color: Colors.grey,),
-                                    ),
-                                    Text(' ${myCartController.lstMyCart.value![index]!.number} ',
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                        color: Color(0xFF498552),
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Comfortaa',
-                                      ),),
-                                    InkWell(
-                                      onTap: (){
-                                        myCartController.dbHelper.update(
-                                            MyCart(
-                                                id: myCartController.lstMyCart.value![index]!.id,
-                                                email: myCartController.lstMyCart.value![index]!.email,
-                                                idPlant: myCartController.lstMyCart.value![index]!.idPlant,
-                                                number: myCartController.lstMyCart.value![index]!.number! + 1)
-                                        ).whenComplete(() =>  myCartController.getLstMyCart());
-
-                                      },
-                                      child: Icon(Icons.add_circle_outline,size: 35,color: Colors.grey,),
-                                    )
-                                  ],
+                                  },
+                                  child: const Icon(Icons.add_circle_outline,size: 35,color: Colors.grey,),
                                 )
                               ],
                             )
                           ],
-                        ),
-                      ))
+                        )
+                      ],
+                    ))
 
-                ],
-              ),
-            );
-          }),
-    ),
+              ],
+            ),
+          );
+        }),
   );
 }
 
@@ -214,7 +204,7 @@ Widget buttonCheckOut(MyCartController myCartController, UserController userCont
       ),
 
       // button
-      Padding(padding: EdgeInsets.all(20),
+      Padding(padding: const EdgeInsets.all(20),
         child:  ElevatedButton(
             onPressed: (){
               Get.bottomSheet(
@@ -265,7 +255,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                   fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Column(
             children: [
               // address
@@ -279,7 +269,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 10,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -287,28 +277,28 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                   children: [
                     Row(
                       children:[
-                        Icon(FontAwesomeIcons.user,size: 15,),
+                        const Icon(FontAwesomeIcons.user,size: 15,),
                         Text(' ${userController.user.value!.name}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Comfortaa',
                           ),),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(Icons.local_phone_outlined,size: 15,),
+                        const Icon(Icons.local_phone_outlined,size: 15,),
                         Text(' ${userController.user.value!.phone}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Comfortaa',
                           ),),
                       ],
                     ),
                     Row(
                       children:[
-                        Icon(Icons.location_on_outlined,size: 15,),
+                        const Icon(Icons.location_on_outlined,size: 15,),
                         Expanded(child:  Text(' ${userController.user.value!.address}'
                           ,overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Comfortaa',
                           ),),)
                       ],
@@ -329,7 +319,7 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                         fontFamily: 'Comfortaa',
                         fontWeight: FontWeight.bold
                       ),),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -337,25 +327,25 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.creditCard,size: 40, color: Color(0xFFC8DACB),),
+                          child: const Icon(FontAwesomeIcons.creditCard,size: 40, color: Color(0xFFC8DACB),),
                         ),
                         InkWell(
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.ccMastercard,size: 40,color: Color(0xFFC8DACB)),
+                          child: const Icon(FontAwesomeIcons.ccMastercard,size: 40,color: Color(0xFFC8DACB)),
                         ),
                         InkWell(
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.ccPaypal,size: 40,color: Color(0xFFC8DACB)),
+                          child: const Icon(FontAwesomeIcons.ccPaypal,size: 40,color: Color(0xFFC8DACB)),
                         ),
                         InkWell(
                           onTap: (){
 
                           },
-                          child: Icon(FontAwesomeIcons.wallet,size: 40,color: Color(0xFF498552)),
+                          child: const Icon(FontAwesomeIcons.wallet,size: 40,color: Color(0xFF498552)),
                         )
                       ],
                     )
@@ -363,97 +353,95 @@ Widget bottomSheetCheckOut(MyCartController myCartController, UserController use
                 ),
               ),
               // item
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      padding:const EdgeInsets.only(top: 20,bottom: 20),
-                      decoration: BoxDecoration(
-                        //color: Colors.red,
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Colors.grey.shade300,
-                                  width: 1
-                              ),
-                              top: BorderSide(
-                                  color: Colors.grey.shade300,
-                                  width: 1
-                              )
-                          )
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              const Expanded(
-                                child: Text('Items',
-                                  style: TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      color: Colors.grey
-                                  ),),
-                              ),
-                              Expanded(
-                                child: Text('\$ ${bill(myCartController)?.toStringAsFixed(2)}',
-                                  textAlign: TextAlign.right,
-                                  style: const TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF498552)
-                                  ),),
-                              ),
-
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            children: const [
-                              Expanded(
-                                child: Text('Discounts',
-                                  style: TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      color: Colors.grey
-                                  ),),
-                              ),
-                              Expanded(
-                                child: Text('- \$ 0.00',textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      color: Color(0xFF498552)
-                                  ),),
-                              ),
-
-                            ],
-                          ),
-                        ],
-                      ),
+              Column(
+                children: [
+                  Container(
+                    padding:const EdgeInsets.only(top: 20,bottom: 20),
+                    decoration: BoxDecoration(
+                      //color: Colors.red,
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Colors.grey.shade300,
+                                width: 1
+                            ),
+                            top: BorderSide(
+                                color: Colors.grey.shade300,
+                                width: 1
+                            )
+                        )
                     ),
-                    const SizedBox(height: 10,),
-                    Row(
+                    child: Column(
                       children: [
-                        const Expanded(
-                          child: Text('Total',
-                            style: TextStyle(
-                                fontFamily: 'Comfortaa',
-                                color: Colors.grey
-                            ),),
-                        ),
-                        Expanded(
-                          child: Text('\$ ${bill(myCartController)?.toStringAsFixed(2)}',textAlign: TextAlign.right,
-                            style: const TextStyle(
-                                fontFamily: 'Comfortaa',
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF498552)
-                            ),),
-                        ),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text('Items',
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    color: Colors.grey
+                                ),),
+                            ),
+                            Expanded(
+                              child: Text('\$ ${bill(myCartController)?.toStringAsFixed(2)}',
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF498552)
+                                ),),
+                            ),
 
+                          ],
+                        ),
+                        const SizedBox(height: 5,),
+                        Row(
+                          children: const [
+                            Expanded(
+                              child: Text('Discounts',
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    color: Colors.grey
+                                ),),
+                            ),
+                            Expanded(
+                              child: Text('- \$ 0.00',textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    fontFamily: 'Comfortaa',
+                                    color: Color(0xFF498552)
+                                ),),
+                            ),
+
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      const Expanded(
+                        child: Text('Total',
+                          style: TextStyle(
+                              fontFamily: 'Comfortaa',
+                              color: Colors.grey
+                          ),),
+                      ),
+                      Expanded(
+                        child: Text('\$ ${bill(myCartController)?.toStringAsFixed(2)}',textAlign: TextAlign.right,
+                          style: const TextStyle(
+                              fontFamily: 'Comfortaa',
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF498552)
+                          ),),
+                      ),
+
+                    ],
+                  ),
+                ],
               ),
 
               // button
-              Padding(padding: EdgeInsets.all(30),
+              Padding(padding: const EdgeInsets.all(30),
                 child:  ElevatedButton(
                     onPressed: () async {
 

@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
@@ -26,156 +25,153 @@ class LoginScreen extends GetWidget<AuthController>{
     // TODO: implement build
    // throw UnimplementedError();
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                  child: Container(
-                color: Color(0xFF64976C),
-                width: double.infinity,
-                child:  Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/logo.png',
-                      width:  20.w,
-                      height:  20.h,
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: Container(
+              color: const Color(0xFF64976C),
+              width: double.infinity,
+              child:  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width:  40.w,
+                    height:  40.w,
+                  ),
+                  SizedBox(
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        ColorizeAnimatedText(
+                            'Plant Shop',
+                            textStyle: const TextStyle(
+                              fontSize: 20.0,
+                              fontFamily: 'Comfortaa',
+                            ),
+                            colors: [
+                              Colors.white,
+                              const Color(0xFFE9F0EA),
+                              Colors.white24,
+                            ],
+                            speed: const Duration(seconds: 1)
+                        ),
+                      ],
+                      // isRepeatingAnimation: true,
+                      onTap: () {
+                       // print("Tap Event");
+                      },
                     ),
-                    SizedBox(
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          ColorizeAnimatedText(
-                              'Plant Shop',
-                              textStyle: const TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'Comfortaa',
-                              ),
-                              colors: [
-                                Colors.white,
-                                const Color(0xFFE9F0EA),
-                                Colors.white24,
-                              ],
-                              speed: const Duration(seconds: 1)
-                          ),
-                        ],
-                        // isRepeatingAnimation: true,
-                        onTap: () {
-                          print("Tap Event");
-                        },
+                  )
+                ],
+              ),
+            )),
+            Expanded(child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Padding(padding: EdgeInsets.all(20),
+                      child: Text('Login',style:
+                      TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Comfortaa',
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold
+                      ),),),
+
+
+                Padding(padding: const EdgeInsets.only(left: 20,right: 20),
+                child: TextField(
+                  controller: _textEditingControllerEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    prefixIcon: const Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: const BorderSide(
+                        width: 1,
+                        style: BorderStyle.none,
                       ),
-                    )
-                  ],
-                ),
-              )),
-              Expanded(child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Padding(padding: EdgeInsets.all(20),
-                        child: Text('Login',style:
-                        TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Comfortaa',
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold
-                        ),),),
-
-
-                  Padding(padding: EdgeInsets.only(left: 20,right: 20),
+                    ),
+                  ),
+                ),),
+                Padding(padding: const EdgeInsets.only(left: 20,right: 20),
                   child: TextField(
-                    controller: _textEditingControllerEmail,
-                    keyboardType: TextInputType.emailAddress,
+                    controller: _textEditingControllerPass,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     decoration: InputDecoration(
-                      hintText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'Password',
+                      prefixIcon: const Icon(Icons.password),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                         borderSide: const BorderSide(
                           width: 1,
                           style: BorderStyle.none,
                         ),
-                      ),
                     ),
                   ),),
-                  Padding(padding: const EdgeInsets.only(left: 20,right: 20),
-                    child: TextField(
-                      controller: _textEditingControllerPass,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        prefixIcon: const Icon(Icons.password),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                      ),
-                    ),),
-                  ),
-                  Padding(padding: EdgeInsets.all(20),
-                    child:  ElevatedButton(
-                        onPressed: (){
-                          controller.loginWithEmailAndPassword(
-                              _textEditingControllerEmail.text,
-                              _textEditingControllerPass.text);
-                        },
-                      style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                ),
+                Padding(padding: const EdgeInsets.all(20),
+                  child:  ElevatedButton(
+                      onPressed: (){
+                        controller.loginWithEmailAndPassword(
+                            _textEditingControllerEmail.text,
+                            _textEditingControllerPass.text);
+                      },
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
 
-                              )
-                          )
-                      ),
-                        child: const SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: Center(child: Text('Login',style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Comfortaa',
-                          ),)),
-                        )),
-                  ),
-                  Padding(padding: EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Dont have a account? ',style: TextStyle(
-                        color: Colors.grey,
-                        fontFamily: 'Comfortaa',
-                      ),
-                      ),
-                      InkWell(
-                        onTap: (){
-                          Get.to(const SignupScreen());
-                        },
-                        child: const Text('Signup',style: TextStyle(
-                            color: Color(0xFF215528),
+                            )
+                        )
+                    ),
+                      child: const SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: Center(child: Text('Login',style: TextStyle(
+                          fontSize: 20,
                           fontFamily: 'Comfortaa',
-                        ),),
-                      )
-                    ],
-                  ),)
-                  // ElevatedButton(
-                  //     onPressed: (){
-                  //       Get.to(SignupScreen());
-                  //     },
-                  //     child: const Text('Signup')),
-                  // ElevatedButton(
-                  //     onPressed: (){
-                  //       controller.logout();
-                  //     },
-                  //     child: const Text('Logout'))
-                ],
-              ),),
+                        ),)),
+                      )),
+                ),
+                Padding(padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Dont have a account? ',style: TextStyle(
+                      color: Colors.grey,
+                      fontFamily: 'Comfortaa',
+                    ),
+                    ),
+                    InkWell(
+                      onTap: (){
+                        Get.to(const SignupScreen());
+                      },
+                      child: const Text('Signup',style: TextStyle(
+                          color: Color(0xFF215528),
+                        fontFamily: 'Comfortaa',
+                      ),),
+                    )
+                  ],
+                ),)
+                // ElevatedButton(
+                //     onPressed: (){
+                //       Get.to(SignupScreen());
+                //     },
+                //     child: const Text('Signup')),
+                // ElevatedButton(
+                //     onPressed: (){
+                //       controller.logout();
+                //     },
+                //     child: const Text('Logout'))
+              ],
+            ),),
 
-            ],
-          ),
+          ],
         ),
-
       ),
     );
   }

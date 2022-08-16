@@ -4,15 +4,17 @@ import 'package:getx_firebase/data/plantData.dart';
 
 import '../../../models/plant.dart';
 
-Plant? getPlant(int idPlant){
+Plant? getPlant(int idPlant) {
+  Plant? pl;
   if(idPlant >= 0){
     for(var i in lstPlant){
       if(i.id == idPlant){
-        return i;
-        break;
+        pl = i;
+        //break;
       }
     }
   }
+  return pl;
 }
 
 num? bill(MyCartController myCartController){

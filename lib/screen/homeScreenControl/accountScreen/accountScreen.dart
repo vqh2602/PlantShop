@@ -1,23 +1,12 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getx_firebase/controllers/controllers/authController.dart';
 import 'package:getx_firebase/controllers/controllers/userController.dart';
-import 'package:getx_firebase/main.dart';
-import 'package:getx_firebase/screen/infoPlantScreen/infoPlantScreen.dart';
-import 'package:getx_firebase/screen/oderScreen/oderScreen.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../controllers/controllers/billController.dart';
 import '../../../controllers/controllers/myCartController.dart';
-import '../../../data/plantData.dart';
-import '../../../models/bill.dart';
-import '../../../models/plant.dart';
-import '../../oderScreen/oderScreen_widget.dart';
-import '../../splashScreen/splashScreen.dart';
 import 'accountScreen_widget.dart';
-import 'editAccInfomationScreen.dart';
 
 class AccountScreen extends GetWidget{
  AccountScreen({Key? key}) : super(key: key);
