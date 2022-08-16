@@ -1,7 +1,7 @@
 # Plant Shop
 ## _Ứng dụng bán cây cảnh (ui)_
 
-[![N|Solid](https://i0.wp.com/imgur.com/7XYLtyf.png?w=910&ssl=1)](https://vqh2602-my.sharepoint.com/:u:/g/personal/vqh2602_vqh2602_onmicrosoft_com/EVwB35jZ6dBBupg-aOWEjLIBgdgDpAjvufrg-7PYDnxMNg?e=0EyfEH)
+[![N|Solid](https://i0.wp.com/imgur.com/7XYLtyf.png?w=910&ssl=1)](https://vqh2602-my.sharepoint.com/:f:/g/personal/vqh2602_vqh2602_onmicrosoft_com/EjwnyvR-3i9OjOZgtIbXcZwBBrHoxoM71ZqSraJEeK64Kg?e=siyTEn)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/vqh2602/PlantShop)
 
